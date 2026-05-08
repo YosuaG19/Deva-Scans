@@ -12,7 +12,7 @@
         @endforeach
     </div>
     <div class="flex justify-between items-center">
-        <form action="">
+        <form action="" class="flex gap-3">
             <input type="text" placeholder="Search here" class="rounded-lg text-lg px-4 py-1.5 bg-white">
             <button class="text-white text-lg px-4 py-1.5 font-semibold rounded-lg hover:bg-[#353535]">Search</button>
         </form>

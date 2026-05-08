@@ -6,12 +6,14 @@
 @include('layout.navbar')
 
 {{-- Banner --}}
-<div class="flex gap-4 overflow-x-auto mt-6">
-    @for ($i = 0; $i < 10; $i++)
-        <a href="" class="flex min-w-[180px] h-[240px]">
-            @include('components.cover-card')
-        </a>
-    @endfor
+<div class="swiper mySwiper mt-6">
+    <div class="swiper-wrapper">
+        @for ($i = 0; $i < 20; $i++)
+            <div href="" class="swiper-slide flex !w-[180px]" data-url="manga/{{$i}}">
+                @include('components.cover-card')
+            </div>
+        @endfor
+    </div>
 </div>
 
 {{-- Manga View --}}
@@ -42,3 +44,5 @@
         </div>
     </div>
 </div>
+
+@include('components.footer')
