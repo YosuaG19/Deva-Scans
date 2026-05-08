@@ -18,3 +18,7 @@ Route::get('/profile', function(){
 Route::get('/creator', function(){
     return view('creator');
 })->name('creator.view');
+
+Route::get('/series-detail', function(){
+    return view('series-detail');
+})->name('series.detail');

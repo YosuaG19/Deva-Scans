@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<a href="" class="flex flex-col w-[135px]">
+<a href="{{ route('series.detail') }}" class="flex flex-col w-[135px]">
     <div class="flex w-full h-[180px] bg-white">
         @include('components.cover-card')
     </div>

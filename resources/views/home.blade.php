@@ -8,7 +8,7 @@
 {{-- Banner --}}
 <div class="flex gap-4 overflow-x-auto mt-6">
     @for ($i = 0; $i < 10; $i++)
-        <a href="" class="flex min-w-[180px] h-[240px]">
+        <a href="{{ route('series.detail') }}" class="flex min-w-[180px] h-[240px]">
             @include('components.cover-card')
         </a>
     @endfor
