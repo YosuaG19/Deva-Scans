@@ -10,3 +10,35 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+.comic-cover{
+    aspect-ratio: 3/4;
+}
+
+.series-layout{
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    column-gap: 1.5rem;
+    row-gap: 1rem;
+}
+
+.series-layout-vert{
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    row-gap: 1rem;
+}
+
+.swiper {
+    width: 100%;
+}
+
+
+.swiper-slide {
+    transition: 0.3s ease;
+    transform: scale(0.9);
+    opacity: 0.5;
+}
+
+.swiper-slide-active {
+    transform: scale(1);
+    opacity: 1;
+}
