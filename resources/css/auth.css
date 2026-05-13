@@ -1,0 +1,220 @@
+.auth-page{
+    min-height: 100vh;
+
+    background-image:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('/public/images/auth-bg.png');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 20px;
+}
+
+.signup-container{
+    width: 100%;
+    max-width: 620px;
+
+    background: #3A3A3A;
+
+    border-radius: 10px;
+
+    padding: 45px 70px;
+
+    position: relative;
+
+    box-shadow:
+        0 0 20px rgba(255, 196, 0, 0.18),
+        0 0 45px rgba(255, 196, 0, 0.15),
+        0 0 80px rgba(255, 196, 0, 0.08);
+}
+
+.signup-title{
+    color: white;
+
+    text-align: center;
+
+    font-size: 28px;
+    font-weight: 800;
+
+    margin-bottom: 10px;
+}
+
+.signup-logo{
+    width: 500px;
+
+    display: block;
+
+    margin: 0 auto 25px;
+}
+
+.input-group{
+    margin-bottom: 18px;
+}
+
+.input-group label{
+    display: block;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.input-group input{
+    width: 100%;
+    height: 40px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 3px;
+
+    background: white;
+
+    padding: 0 12px;
+
+    font-size: 14px;
+}
+
+.signup-button{
+    width: 120px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    background:linear-gradient(
+        180deg,
+        #FFE14A 0%,
+        #E0B900 100%
+    );
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: block;
+
+    margin: 32px auto 18px;
+
+    transition: 0.3s;
+}
+
+.signup-button:hover{
+    background: #ffd500;
+}
+
+.or-text{
+    text-align: center;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    margin-bottom: 16px;
+}
+
+.login-text{
+    text-align: center;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.login-text a{
+    color: #F4D03F;
+
+    text-decoration: none;
+
+    font-weight: 800;
+}
+
+.login-text a:hover{
+    text-decoration: underline;
+}
+
+/* ========================= */
+/* LOGIN PAGE */
+/* ========================= */
+
+.password-label{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 8px;
+}
+
+.password-label label{
+    margin-bottom: 0;
+}
+
+.forgot-password{
+    color: #F4D03F;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.forgot-password:hover{
+    text-decoration: underline;
+}
+
+@media(max-width: 768px){
+
+    .signup-container{
+        padding: 35px 25px;
+    }
+
+    .signup-logo{
+        width: 500px;
+    }
+
+    .password-label{
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .forgot-password{
+        font-size: 0.85rem;
+    }
+
+}
+
+@media(max-width: 480px){
+
+    .signup-title{
+        font-size: 24px;
+    }
+
+    .login-text{
+        font-size: 14px;
+    }
+
+    .password-label{
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .forgot-password{
+        font-size: 0.75rem;
+    }
+
+}
