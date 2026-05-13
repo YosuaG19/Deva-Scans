@@ -5,7 +5,7 @@
 @section('content')
 @include('layout.navbar')
 
-<div class="min-h-screen bg-[#676767] py-8 px-20 flex gap-8">
+<div class="home-cont">
 
     {{-- LEFT SIDE --}}
     @include('components.series-detail-sidebar', [
@@ -37,4 +37,6 @@
     ])
 
 </div>
+
+@include('layout.footer')
 @endsection

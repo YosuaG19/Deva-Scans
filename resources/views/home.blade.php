@@ -19,7 +19,7 @@ r<div class="swiper mySwiper mt-6">
 {{-- Manga View --}}
 <div class="home-cont">
 
-    <div class="series-cont">
+    <div class="series-cont gap-4">
         <h2>Update</h2>
 
         <div class="flex justify-between gap-4">
@@ -37,7 +37,7 @@ r<div class="swiper mySwiper mt-6">
         </div>
     </div>
 
-    <div class="series-cont">
+    <div class="series-cont gap-4">
         <h2>Recommended</h2>
 
         <div class="series-layout-vert">
@@ -48,4 +48,4 @@ r<div class="swiper mySwiper mt-6">
     </div>
 </div>
 
-@include('components.footer')
+@include('layout.footer')

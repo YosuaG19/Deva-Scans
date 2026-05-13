@@ -1,88 +1,71 @@
-<div class="w-[360px] flex flex-col gap-3">
+<div class="w-full md:w-[330px] flex items-center flex-col gap-3 p-2">
 
     {{-- Cover --}}
-    <img 
-        src="{{asset($coverimage)}}"
-        class="w-full h-[470px] object-cover"
-    >
-
-    {{-- Rating --}}
-    <div class="
-        border-2
-        border-[#FFD700]
-        rounded
-        py-1.5
-        flex
-        items-center
-        justify-center
-        gap-2
-        text-[#FFD700]
-        font-semibold
-    ">
-        <span>★</span>
-        <span>Rating</span>
+    <div class="flex w-[180px] md:w-full">
+        @include('components.cover-card')
     </div>
 
+    {{-- Rating --}}
+    <button class="btn-rating">
+        <span>★</span>
+        <span>Rating</span>
+    </button>
+
     {{-- Information Box --}}
-    <div class="bg-[#3A3A3A] rounded p-4 text-[#FFD700]">
+    <div class="series-desc">
 
         {{-- Top Stats --}}
         <div class="grid grid-cols-3 text-center">
 
             <div>
-                <h2 class="font-bold text-xl">★ {{$rating}}</h2>
-                <p class="text-[10px]">Rating</p>
+                <h3 class="font-bold text-lg">★ {{$rating}}</h3>
+                <p class="text-xs font-thin">Rating</p>
             </div>
 
             <div class="border-x border-[#FFD700]">
-                <h2 class="font-bold text-lg">{{$chapters}}</h2>
-                <p class="text-[10px]">Chapters</p>
+                <h3 class="font-bold text-lg">{{$chapters}}</h3>
+                <p class="text-xs font-thin">Chapters</p>
             </div>
 
             <div>
-                <h2 class="font-bold text-lg">{{$bookmark}}</h2>
-                <p class="text-[10px]">Bookmarks</p>
+                <h3 class="font-bold text-lg">{{$bookmark}}</h3>
+                <p class="text-xs font-thin">Bookmarks</p>
             </div>
 
         </div>
 
         {{-- Divider --}}
-        <div class="border-t border-[#FFD700] my-3"></div>
+        <div class="border-t border-[#FFD700]"></div>
 
         {{-- Status & Type --}}
         <div class="grid grid-cols-2 text-center">
 
             <div>
-                <p class="text-[10px]">Status</p>
-                <h2 class="font-bold text-1xl">• {{$status}}</h2>
+                <p class="text-xs font-thin">Status</p>
+                <h3 class="font-bold text-lg">• {{$status}}</h3>
             </div>
 
             <div>
-                <p class="text-[10px]">Type</p>
-                <h2 class="font-bold text-1xl">• {{$type}}</h2>
+                <p class="text-xs font-thin">Type</p>
+                <h3 class="font-bold text-lg">• {{$type}}</h3>
             </div>
 
         </div>
 
         {{-- Divider --}}
-        <div class="border-t border-[#FFD700] my-4"></div>
+        <div class="border-t border-[#FFD700]"></div>
 
         {{-- Author --}}
-        <div class="grid grid-cols-3 text-center text-[11px]">
+        <div class="flex items-center justify-between">
 
-            <div>
-                <p>Author</p>
-                <h2 class="mt-1 font-semibold">-</h2>
+            <div class="flex items-center gap-4 justify-between w-[40%]">
+                <p class="text-xs font-thin">Author</p>
+                <h3 class="text-xs font-bold">-</h3>
             </div>
-
-            <div>
-                <p>{{$author}}</p>
-                <h2 class="mt-1 font-semibold">-</h2>
-            </div>
-
-            <div>
-                <p>Artist</p>
-                <h2 class="mt-1 font-semibold">{{$artist}}</h2>
+            <span class="w-[.5px] h-[20px] bg-[#FFD700]"></span>
+            <div class="flex items-center justify-between w-[40%]">
+                <p class="text-xs font-thin">Artist</p>
+                <h3 class="text-xs font-bold">{{$artist}}</h3>
             </div>
 
         </div>
@@ -90,22 +73,11 @@
     </div>
 
     {{-- Genres --}}
-    <div class="flex flex-wrap gap-2">
+    <div class="flex flex-wrap gap-2 w-full">
 
         @foreach ($genres as $genre)
 
-            <button class="
-                border
-                border-[#FFD700]
-                text-[#FFD700]
-                text-[11px]
-                px-3
-                py-1
-                hover:bg-[#FFD700]
-                hover:text-black
-                transition-colors
-                duration-200
-            ">
+            <button class="btn-genre">
                 {{ $genre }}
             </button>
 
