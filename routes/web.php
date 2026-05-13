@@ -22,3 +22,11 @@ Route::get('/creator', function(){
 Route::get('/series-detail', function(){
     return view('series-detail');
 })->name('series.detail');
+
+Route::get('/sign-up', function(){
+    return view('sign-up');
+})->name('sign-up.view');
+
+Route::view('/sign-in', '.sign-in')->name('sign-in.view');
+
+Route::view('/forgot-pw', 'forgot-pw')->name('forgot-pw.view');
