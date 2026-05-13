@@ -1,5 +1,5 @@
-import './bootstrap';
-import 'bootstrap/dist/js/bootstrap.min.js';
+// import './bootstrap';
+// import 'bootstrap/dist/js/bootstrap.min.js';
 import Swiper from 'swiper';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
