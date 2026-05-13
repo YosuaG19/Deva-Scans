@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<a href="" class="flex flex-col w-[135px]">
-    <div class="flex w-full h-[180px] bg-white">
+<a href="" class="flex flex-col md:w-[120px]">
+    <div class="flex w-full md:h-[160px] bg-white">
         @include('components.cover-card')
     </div>
 
     
     <div class="flex flex-col text-white">
-        <h3>Title Here</h3>
+        <h3 class="comic-title">Title Here, and here we gooo</h3>
         
         <span class="flex justify-between">
             <p class="text-xs">Chapter xx</p>
