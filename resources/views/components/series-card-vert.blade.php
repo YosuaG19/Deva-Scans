@@ -8,10 +8,10 @@
 
     <div class="flex flex-col justify-between py-.5 text-white">
         <span>
-            <h3 class="comic-title-vert text-sm">Title Here, and here we gooo</h3>
-            <p class="text-xs">Chapter xx</p>
+            <h3 class="comic-title-vert text-sm font-semibold">Title Here, and here we gooo</h3>
+            <p class="text-xs font-thin">Chapter xx</p>
         </span>
 
-        <p class="text-xs">Last Updated TimeStamp</p>
+        <p class="text-xs font-thin">Last Updated TimeStamp</p>
     </div>
 </a>

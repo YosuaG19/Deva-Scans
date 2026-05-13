@@ -6,11 +6,11 @@
 
     
     <div class="flex flex-col text-white">
-        <h3 class="comic-title">Title Here, and here we gooo</h3>
+        <h3 class="comic-title text-sm font-semibold">Title Here, and here we gooo</h3>
         
         <span class="flex justify-between">
-            <p class="text-xs">Chapter xx</p>
-            <p class="text-xs">Rating</p>
+            <p class="text-xs font-thin">Chapter xx</p>
+            <p class="text-xs font-thin">Rating</p>
         </span>
     </div>
 </a>
