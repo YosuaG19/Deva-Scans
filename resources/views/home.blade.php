@@ -17,16 +17,19 @@ r<div class="swiper mySwiper mt-6">
 </div>
 
 {{-- Manga View --}}
-<div class="flex items-start justify-center h-auto gap-8 mt-6">
+<div class="home-cont">
 
-    <div class="flex flex-col gap-6">
+    <div class="series-cont">
+        <h2>Update</h2>
+
         <div class="flex justify-between gap-4">
             @foreach (config('date') as $day)
-                <button class="w-full py-1.5 bg-[#FFD700] uppercase font-semibold">
+                <button class="w-full py-1.5 bg-[#FFD700] text-xs md:text-sm uppercase font-semibold">
                     {{$day['name']}}
                 </button>
             @endforeach
         </div>
+
         <div class="series-layout">
             @for ($i = 0; $i < 10; $i++)
                 @include('components.series-card')
@@ -34,8 +37,8 @@ r<div class="swiper mySwiper mt-6">
         </div>
     </div>
 
-    <div class="flex flex-col gap-2">
-        <h2 class="text-white text-xl font-bold uppercase">bookmark</h2>
+    <div class="series-cont">
+        <h2>Recommended</h2>
 
         <div class="series-layout-vert">
             @for ($i = 0; $i < 5; $i++)

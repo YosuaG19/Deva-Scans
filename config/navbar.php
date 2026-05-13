@@ -10,10 +10,6 @@ return [
         'route' => 'browse.view'
     ],
     [
-        'name' => 'Profile',
-        'route' => 'profile.view'
-    ],
-    [
         'name' => 'Creator',
         'route' => 'creator.view'
     ],
