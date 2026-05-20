@@ -30,4 +30,4 @@
     </div>
 </div>
 
-@include('components.footer')
+@include('layout.footer')
