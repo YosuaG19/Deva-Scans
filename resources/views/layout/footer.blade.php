@@ -1,10 +1,10 @@
 <div class="footer-banner">
     <div class="flex items-center gap-2">
-        <img src="{{ asset('favicon.ico') }}" alt="logo" width="80" height="80">
-        <p class="text-3xl font-semibold">Deva Scan</p>
+        <img src="{{ asset('favicon.ico') }}" alt="logo" width="70" height="70">
+        <p class="text-2xl font-semibold">Deva Scan</p>
     </div>
 
-    <div class="flex flex-col gap-6 w-full items-center">
+    <div class="flex flex-col gap-4 w-full items-center">
         <span class="policy-cont">
             <a href="">Privacy Policy</a>
             <a href="">Terms Of Service</a>

@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import './auth.css';
+@import './profile.css';
 
 /* @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php'; */
 /* @source '../../storage/framework/views/*.php'; */
@@ -116,7 +117,7 @@
     opacity: 1;
 }
 
-@import './auth.css';
+
 
 /* *{
     margin: 0;
@@ -151,7 +152,7 @@ body{
     align-items: center;
     margin-top: 3rem;
     padding: 1rem 0rem 1rem 0rem;
-    gap: 1rem;
+    gap: .75rem;
     box-sizing: border-box;
     color: white;
     background: #151515;
@@ -169,8 +170,8 @@ body{
 }
 
 .policy-cont a{
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
     font-weight: 600;
     transition: 200ms ease;
 }
@@ -183,8 +184,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
     border: white 2px solid;
     transition: 200ms ease;
@@ -265,9 +266,30 @@ body{
     background: #FFD700;
 }
 
+.btn-profile{
+    font-size: .75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    padding: .25rem 1.5rem;
+    color: black;
+    background: #FFD700;
+    border-radius: 5px;
+    border: 2px solid #FFD700;
+    transition: 200ms ease;
+}
+
+.btn-profile:hover{
+    background: none;
+    color: #FFD700;
+}
+
 @media screen and (max-width: 1024px) {
     .series-layout{
         grid-template-columns: repeat(3, auto);
+    }
+
+    .profile-banner{
+        padding: 1rem 4rem;
     }
 
     .chapter-title{
@@ -305,5 +327,15 @@ body{
         grid-template-columns: repeat(3, auto);
         row-gap: .75rem;
         column-gap: 2rem;
+    }
+
+    .profile-banner{
+        display: flex;
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .btn-profile{
+        padding: .25rem .75rem;
     }
 }
