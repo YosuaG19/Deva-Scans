@@ -5,9 +5,9 @@
 @include('layout.navbar')
 @include('components.profile-banner')
 
-<div class="flex items-start justify-center h-auto gap-8 mt-6">
+<div class="home-cont">
 
-    <div class="flex flex-col gap-4">
+    <div class="series-cont gap-4">
         <div class="flex gap-4">
             <button class="text-[#FFD700] uppercase font-semibold">Bookmarks</button>
             <button class="text-[#FFD700] uppercase font-semibold">Your Comics</button>
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="flex flex-col gap-2">
+    <div class="series-cont gap-2">
         <h2 class="text-[#FFD700] text-xl font-bold uppercase">History</h2>
 
         <div class="series-layout-vert">

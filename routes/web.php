@@ -15,6 +15,10 @@ Route::get('/profile', function(){
     return view('profile');
 })->name('profile.view');
 
+Route::get('/profile-edit', function(){
+    return view('profile-info');
+})->name('profile-edit.view');
+
 Route::get('/creator', function(){
     return view('creator');
 })->name('creator.view');
@@ -30,3 +34,5 @@ Route::get('/sign-up', function(){
 Route::view('/sign-in', '.sign-in')->name('sign-in.view');
 
 Route::view('/forgot-pw', 'forgot-pw')->name('forgot-pw.view');
+
+// Route::get()
