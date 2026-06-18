@@ -9,7 +9,7 @@
             <p class="text-sm">Joined, timestamp</p>
         </span>
         <span class="flex gap-4">
-            <a href="{{route('profile-edit.view')}}" class="btn-profile">Edit Profile</a>
+            <a href="{{route('profile.edit')}}" class="btn-profile">Edit Profile</a>
             <button class="btn-profile">Log out</button>
         </span>
     </div>

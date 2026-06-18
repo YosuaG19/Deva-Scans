@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import './auth.css';
 @import './profile.css';
+@import './subs.css';
 
 /* @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php'; */
 /* @source '../../storage/framework/views/*.php'; */
@@ -29,6 +30,7 @@
 
 .comic-cover{
     aspect-ratio: 3/4;
+    transition: 200ms ease;
 }
 
 .home-cont{
@@ -49,7 +51,7 @@
         0 0px 5px -10px #353535,  
         0 0px 5px  0   #353535, 
         0 0px 5px  0   #353535;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.25rem;
 }
 
 .series-cont h2{
@@ -70,7 +72,6 @@
 .series-layout-vert{
     display: grid;
     grid-template-columns: repeat(1, auto);
-    row-gap: 1rem;
 }
 
 .series-desc{
@@ -88,8 +89,19 @@
     gap: .5rem;
 }
 
+.series-hover:hover .comic-cover{
+    transform: scale(1.05);
+}
+
+.browse-layout{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    column-gap: 1.5rem;
+    row-gap: 1rem;
+}
+
 .comic-title, .comic-title-vert{
-    width: 120px;
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -144,6 +156,16 @@ body{
     box-sizing: border-box;
     width: 100%;
     gap: 2.5rem;
+}
+
+.browse-banner{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 1rem 6rem;
+    box-sizing: border-box;
+    width: 100%;
+    gap: 1rem;
 }
 
 .footer-banner{
@@ -269,7 +291,7 @@ body{
 .btn-profile{
     font-size: .75rem;
     line-height: 1rem;
-    font-weight: 600;
+    /* font-weight: 600; */
     padding: .25rem 1.5rem;
     color: black;
     background: #FFD700;
@@ -288,7 +310,11 @@ body{
         grid-template-columns: repeat(3, auto);
     }
 
-    .profile-banner{
+    .browse-layout{
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .profile-banner, .browse-banner{
         padding: 1rem 4rem;
     }
 
@@ -313,6 +339,11 @@ body{
         column-gap: 1.25rem;
         row-gap: .75rem;
     }
+    
+    .browse-layout{
+        grid-template-columns: repeat(1, auto);
+        row-gap: 1.5rem;
+    }
 
     .comic-title{
         width: 160px;
@@ -333,6 +364,10 @@ body{
         display: flex;
         padding: 1rem;
         gap: 1.5rem;
+    }
+
+    .browse-banner{
+        padding: 1rem 3rem;
     }
 
     .btn-profile{
