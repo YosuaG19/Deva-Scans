@@ -8,7 +8,7 @@
     <span class="w-full h-[2px] bg-[#FFD700]"></span>
 
     {{-- Subcription Content --}}
-    <button class="btn-profile-edit">View Plans</button>
+    <a href="{{route('subscriptions.view')}}" class="btn-profile-edit">View Plans</a>
 
     <span class="w-full h-[2px] bg-[#FFD700]"></span>
     

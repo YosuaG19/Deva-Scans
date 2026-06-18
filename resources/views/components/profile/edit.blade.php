@@ -16,26 +16,26 @@
                     <button class="btn-profile">Change Photo</button>
                     <button class="btn-profile">Remove</button>
                 </span>
-                <p class="text-xs font-extrathin">Requirement for profile picture</p>
+                <p class="text-xs font-thin">Requirement for profile picture</p>
             </div>
         </div>
     </div>
 
     {{-- Username & Email --}}
-    <form class="form-cont" action="">
+    <form class="form-cont" action="{{ route('profile.uptUser') }}" method="POST">
         @csrf
         <div class="w-full">
             <span class="flex justify-between text-[#FFD700]">
                 <label class="text-sm font-semibold">Username</label>
-                <p class="text-xs font-extrathin">Requirement for username</p>
+                <p class="text-xs font-thin">Requirement for username</p>
             </span>
-            <input class="input-cont" type="text">
+            <input placeholder="old.values" name="Username" class="input-cont" type="text">
         </div>
         <div class="w-full">
             <label class="text-[#FFD700] text-sm font-semibold">Email</label>
-            <input class="input-cont" type="text">
+            <input placeholder="old.values" name="Email" class="input-cont" type="text">
         </div>
-        <button class="btn-profile-edit">Save Profile</button>
+        <button type="submit" class="btn-profile-edit">Save Profile</button>
     </form>
 
     {{-- Pembatas --}}
@@ -44,12 +44,12 @@
     {{-- Change Password --}}
     <div>
         <h3 class="text-[#FFD700] text-sm font-semibold">Change Password</h3>
-        <form class="form-cont text-[#FFD700]" action="">
+        <form class="form-cont text-[#FFD700]" action="{{ route('profile.uptPass') }}" method="POST">
             @csrf
-            <input class="input-cont" placeholder="Old Password" type="text">
-            <input class="input-cont" placeholder="New Password" type="text">
-            <input class="input-cont" placeholder="Confirm Password" type="text">
-            <button class="btn-profile-edit">Update Password</button>
+            <input placeholder="old.values" name="old_pass" class="input-cont" placeholder="Old Password" type="password">
+            <input placeholder="old.values" name="password" class="input-cont" placeholder="New Password" type="password">
+            <input placeholder="old.values" name="password_confirmation" class="input-cont" placeholder="Confirm Password" type="password">
+            <button class="btn-profile-edit" type="submit">Update Password</button>
         </form>
     </div>
 </div>

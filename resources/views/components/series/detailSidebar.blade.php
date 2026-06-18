@@ -2,7 +2,7 @@
 
     {{-- Cover --}}
     <div class="flex w-[180px] md:w-full">
-        @include('components.cover-card')
+        @include('components.series.cardCover')
     </div>
 
     {{-- Rating --}}

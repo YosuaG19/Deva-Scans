@@ -3,7 +3,7 @@
 @section('title', "Profile | Deva Scan")
 @section('content')
 @include('layout.navbar')
-@include('components.profile-banner')
+@include('components.profile.banner')
 
 <div class="home-cont">
 
@@ -14,7 +14,7 @@
         </div>
         <div class="series-layout">
             @for ($i = 0; $i < 10; $i++)
-                @include('components.series-card')
+                @include('components.series.card')
             @endfor
         </div>
     </div>
@@ -24,7 +24,7 @@
 
         <div class="series-layout-vert">
             @for ($i = 0; $i < 5; $i++)
-                @include('components.series-card-vert')
+                @include('components.series.cardVert')
             @endfor
         </div>
     </div>

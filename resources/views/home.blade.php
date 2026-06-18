@@ -10,7 +10,7 @@ r<div class="swiper mySwiper mt-6">
     <div class="swiper-wrapper">
         @for ($i = 0; $i < 20; $i++)
             <div href="" class="swiper-slide flex !w-[180px]" data-url="manga/{{$i}}">
-                @include('components.cover-card')
+                @include('components.series.cardBanner')
             </div>
         @endfor
     </div>
@@ -31,8 +31,8 @@ r<div class="swiper mySwiper mt-6">
         </div>
 
         <div class="series-layout">
-            @for ($i = 0; $i < 10; $i++)
-                @include('components.series-card')
+            @for ($i = 0; $i < 16; $i++)
+                @include('components.series.card')
             @endfor
         </div>
     </div>
@@ -42,7 +42,7 @@ r<div class="swiper mySwiper mt-6">
 
         <div class="series-layout-vert">
             @for ($i = 0; $i < 5; $i++)
-                @include('components.series-card-vert')
+                @include('components.series.cardVert')
             @endfor
         </div>
     </div>
