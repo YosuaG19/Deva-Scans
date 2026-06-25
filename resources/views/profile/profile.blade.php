@@ -10,7 +10,7 @@
     <div class="series-cont gap-4">
         <div class="flex gap-4">
             <button class="text-[#FFD700] uppercase font-semibold">Bookmarks</button>
-            <button class="text-[#FFD700] uppercase font-semibold">Your Comics</button>
+            {{-- <button class="text-[#FFD700] uppercase font-semibold">Your Comics</button> --}}
         </div>
         <div class="series-layout">
             @for ($i = 0; $i < 10; $i++)

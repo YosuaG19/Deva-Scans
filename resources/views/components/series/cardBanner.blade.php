@@ -1,4 +1,4 @@
-<div class="flex relative w-[180px] h-[240px] bg-white overflow-hidden series-hover">
+<div class="flex relative h-[240px] bg-white overflow-hidden series-hover">
     @include('components.series.cardCover')
     <span class="absolute top-1 right-1 text-xs font-thin text-white p-1 bg-[#252525] rounded">
         <span class="text-yellow-400">★</span> 9.8

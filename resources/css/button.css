@@ -1,0 +1,75 @@
+.sort-button{
+    color: white;
+    width: 100%;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.filter-button{
+    color: white;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: .4rem .75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.genre-button{
+    color: white;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: .4rem .75rem;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: .5rem;
+    cursor: pointer;
+}
+
+.genre-button div{
+    width: 13px;
+    height: 13px;
+    border: 1px solid white;
+    border-radius: 2px;
+}
+
+.filter-button svg{
+    display: none;
+}
+
+.filter-button:hover, .sort-button:hover, .genre-button:hover{
+    background: #FFD70020;
+    /* color: black; */
+    border-radius: .25rem;
+}
+
+.filter-button.active, .sort-button.active, .genre-button.active{
+    color: #FFD700;
+    background-color: #FFD70030;
+    border-radius: .25rem;
+}
+
+.filter-button.active svg{
+    display: block;
+    fill: #FFD700;
+}
+
+.genre-button.active div{
+    border: 1px solid #FFD700;
+}
+
+.genre-button.active div span{
+    display: block;
+    width: 80%;
+    height: 75%;
+    background: #FFD700;
+    border-radius: 1px;
+}
+
+/* .status-button{
+
+} */
