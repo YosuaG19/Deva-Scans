@@ -9,7 +9,7 @@
 r<div class="swiper mySwiper mt-6">
     <div class="swiper-wrapper">
         @for ($i = 0; $i < 20; $i++)
-            <div href="" class="swiper-slide flex !w-[180px]" data-url="manga/{{$i}}">
+            <div href="" class="swiper-slide flex !w-[180px] max-h-[240px]" data-url="{{ route('series.detail')}}">
                 @include('components.series.cardBanner')
             </div>
         @endfor
@@ -22,16 +22,16 @@ r<div class="swiper mySwiper mt-6">
     <div class="series-cont gap-4">
         <h2>Update</h2>
 
-        <div class="flex justify-between gap-4">
+        <div class="flex justify-between gap-1 md:gap-4 update-day">
             @foreach (config('date') as $day)
-                <button class="w-full py-1.5 bg-[#FFD700] text-xs md:text-sm uppercase font-semibold">
+                <button class=" day-btn">
                     {{$day['name']}}
                 </button>
             @endforeach
         </div>
 
         <div class="series-layout">
-            @for ($i = 0; $i < 16; $i++)
+            @for ($i = 0; $i < 12; $i++)
                 @include('components.series.card')
             @endfor
         </div>

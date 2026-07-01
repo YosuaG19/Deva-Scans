@@ -1,16 +1,17 @@
 <?php
 
 use App\Http\Controllers;
+use App\Http\Controllers\BrowseController;
+use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(){
     return view('home');
 })->name('home.view');
 
-Route::get('/browse', function(){
-    return view('browse');
-})->name('browse.view');
+Route::get('/browse', [BrowseController::class, 'view'])->name('browse.view');
 
 Route::prefix('profile')->name('profile.')->group(function(){
     Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
@@ -20,13 +21,16 @@ Route::prefix('profile')->name('profile.')->group(function(){
     Route::get('/', [ProfileController::class, 'view'])->name('index');
 });
 
-Route::get('/creator', function(){
-    return view('creator');
-})->name('creator.view');
+Route::prefix('creator')->name('creator.')->group(function(){
+    Route::get('/manage', [CreatorController::class, 'manage'])->name('manage');
+    Route::get('/add', [CreatorController::class, 'addView'])->name('addView');
+    Route::get('/', [CreatorController::class, 'view'])->name('view');
+});
 
-Route::get('/series-detail', function(){
-    return view('series-detail');
-})->name('series.detail');
+Route::prefix('series')->name('series.')->group(function(){
+    Route::get('/{chapter}', [SeriesController::class, 'chapter'])->name('chapter');
+    Route::get('/', [SeriesController::class, 'detail'])->name('detail');
+});
 
 Route::get('/sign-up', function(){
     return view('auth.sign-up');

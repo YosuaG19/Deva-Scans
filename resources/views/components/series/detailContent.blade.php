@@ -44,7 +44,7 @@
 
             @for ($i = $chapters; $i >= 1; $i--)
 
-                <button class="btn-chapter">
+                <a href="{{ route('series.chapter', $i) }}" class="btn-chapter">
                     <div class="flex gap-2 items-center">
                         <h3 class="font-semibold text-sm">Chapter {{ sprintf('%02d', $i) }}</h3>
                         <p class="text-xs font-thin">|</p>
@@ -54,7 +54,7 @@
                     <p class="text-xs font-thin">
                         Mon DD, Year
                     </p>
-                </button>
+                </a>
 
             @endfor
 
