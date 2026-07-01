@@ -5,10 +5,10 @@
 @section('content')
 @include('layout.navbar')
 
-<div class="min-h-screen bg-[#676767] py-8 px-20 flex gap-8">
+<div class="home-cont">
 
     {{-- LEFT SIDE --}}
-    @include('components.series-detail-sidebar', [
+    @include('components.series.detailSidebar', [
     'coverimage' => 'images/mom.jpg',
     'rating' => '4.8',
     'bookmark' => 'x.x',
@@ -26,7 +26,7 @@
 ])
 
     {{-- RIGHT SIDE COMPONENT --}}
-    @include('components.series-detail-content', [
+    @include('components.series.detailContent', [
         'title' => 'On the Way to Meet Mom',
         'description' => "One day, after being discovered in an abandoned house by a rescue team, Mori suddenly 
                         finds himself in a children's protection center. Here, he begins to learn a new way of life – one that 
@@ -37,4 +37,6 @@
     ])
 
 </div>
+
+@include('layout.footer')
 @endsection

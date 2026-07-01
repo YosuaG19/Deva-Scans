@@ -21,7 +21,7 @@
                     <p class="text-xs">Joined at Day Month, Year</p>
                 </span>
                 
-                <a href="{{route('profile.view')}}" class="w-[40px] h-[40px] rounded-full bg-white">
+                <a href="{{route('profile.index')}}" class="w-[40px] h-[40px] rounded-full bg-white">
                     {{-- <img src="{{asset('favicon.ico')}}" width="50" height="50" alt="logo"> --}}
                 </a>
             </div>
