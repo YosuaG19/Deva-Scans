@@ -11,7 +11,7 @@
         <span class="flex flex-col">
             <h3 class="comic-title text-sm font-semibold">On The Way To Meet Mom</h3>
             <span class="flex w-full justify-between items-center px-2">
-                <p class="text-[.65rem] font-thin rounded hover:bg-[#252525] text-white">xx Chapters</p>
+                <p class="text-[.65rem] font-thin rounded hover:bg-[#252525] text-white">xx {{ __('creator.chapters') }}</p>
                 <p class="text-[.65rem] font-thin text-white">dd/mm/yyyy</p>
             </span>
         </span>
@@ -21,15 +21,15 @@
         <span class="flex px-2 justify-between">
             <span class="flex flex-col w-full items-center">
                 <p class="text-[.65rem] font-semibold text-white">XXXX</p>
-                <p class="text-[.5rem] font-thin rounded hover:bg-[#252525] text-white">Views</p>
+                <p class="text-[.5rem] font-thin rounded hover:bg-[#252525] text-white">{{ __('creator.views') }}</p>
             </span>
             <span class="flex flex-col w-full items-center">
                 <p class="text-[.65rem] font-semibold text-white">XXXX</p>
-                <p class="text-[.5rem] font-thin rounded hover:bg-[#252525] text-white">Likes</p>
+                <p class="text-[.5rem] font-thin rounded hover:bg-[#252525] text-white">{{ __('creator.likes') }}</p>
             </span>
             <span class="flex flex-col w-full items-center">
                 <p class="text-[.65rem] font-semibold text-white">XXXX</p>
-                <p class="text-[.5rem] font-thin rounded hover:bg-[#252525] text-white">Comment</p>
+                <p class="text-[.5rem] font-thin rounded hover:bg-[#252525] text-white">{{ __('creator.comments') }}</p>
             </span>
         </span>
     </div>

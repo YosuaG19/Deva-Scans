@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', "Chapter XX | Title Here")
+@section('title', __('series.chapter') . ' XX | Title Here')
 
 @section('content')
 
