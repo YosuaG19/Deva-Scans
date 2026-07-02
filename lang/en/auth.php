@@ -2,19 +2,31 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
+    // General
+    'welcome' => 'WELCOME TO',
+    'welcome_back' => 'WELCOME BACK TO',
+    'forgot_password_title' => 'FORGOT PASSWORD?',
 
-    'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    // Form
+    'email' => 'Email Address',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm Password',
+
+    // Buttons
+    'sign_up' => 'Sign Up',
+    'log_in' => 'Log In',
+    'send' => 'Send',
+
+    // Links
+    'forgot_password' => 'Forgot password?',
+    'already_have_account' => 'Already have an account?',
+    'login_here' => 'Log In here',
+
+    'new_user' => 'Are you new?',
+    'signup_here' => 'Sign up here!',
+
+    'remember_password' => 'Remember your password?',
+
+    'or' => 'or',
 
 ];

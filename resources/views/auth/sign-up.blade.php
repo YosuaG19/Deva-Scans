@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Sign Up')
+@section('title', __('auth.sign_up'))
 
 @section('content')
 
@@ -8,9 +8,7 @@
 
     <div class="signup-container">
 
-        <h1 class="signup-title">
-            WELCOME TO
-        </h1>
+        <h1 class="signup-title">{{ __('auth.welcome') }}</h1>
 
         <img
             src="{{ asset('images/deva-logo.png') }}"
@@ -22,7 +20,7 @@
 
             <div class="input-group">
 
-                <label>Email Address</label>
+                <label>{{ __('auth.email') }}</label>
 
                 <input type="email">
 
@@ -30,7 +28,7 @@
 
             <div class="input-group">
 
-                <label>Password</label>
+                <label>{{ __('auth.password') }}</label>
 
                 <input type="password">
 
@@ -38,28 +36,22 @@
 
             <div class="input-group">
 
-                <label>Confirm Password</label>
+                <label>{{ __('auth.confirm_password') }}</label>
 
                 <input type="password">
 
             </div>
 
-            <button type="submit" class="signup-button">
-                Sign Up
-            </button>
+            <button type="submit" class="signup-button">{{ __('auth.sign_up') }}</button>
 
-            <p class="or-text">
-                or
-            </p>
+            <p class="or-text">{{ __('auth.or') }}</p>
 
             <p class="login-text">
-
-                Already have an account?
+                {{ __('auth.already_have_account') }}
 
                 <a href="{{ route('sign-in.view') }}">
-                    Log In here
+                {{ __('auth.login_here') }}
                 </a>
-
             </p>
 
         </form>

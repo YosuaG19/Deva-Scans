@@ -1,7 +1,7 @@
 <section class="flex flex-col gap-4 items-center mt-6">
     <div class="series-cont items-center w-fit gap-4">
         <h2>
-            My Creations
+            {{ __('creator.my_creations') }}
         </h2>
         <div class="series-layout">
             <a href="{{ route('creator.addView') }}" class="add-comic">
@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="text-[#FFD700] text-sm group-hover:scale-[110%]">
-                    Add new comic
+                    {{ __('creator.add_new_comic') }}
                 </div>
             </a>
 

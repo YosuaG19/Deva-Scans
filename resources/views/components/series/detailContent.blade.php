@@ -17,15 +17,15 @@
     <div class="grid grid-cols-3 gap-2">
 
         <button class="btn-detail">
-            bookmark
+            {{ __('series.bookmark') }}
         </button>
 
         <button class="btn-detail">
-            first chapter
+            {{ __('series.first_chapter') }}
         </button>
 
         <button class="btn-detail">
-            last chapter
+            {{ __('series.last_chapter') }}
         </button>
 
     </div>
@@ -34,8 +34,8 @@
     <div class="series-cont gap-2">
 
         <div class="flex justify-between text-white font-semibold">
-            <span>Total Chapter</span>
-            <span>Newest</span>
+            <span>{{ __('series.total_chapter') }}</span>
+            <span>{{ __('series.newest') }}</span>
         </div>
 
         <div class="bg-gray-200 h-7 rounded"></div>
@@ -46,7 +46,7 @@
 
                 <a href="{{ route('series.chapter', $i) }}" class="btn-chapter">
                     <div class="flex gap-2 items-center">
-                        <h3 class="font-semibold text-sm">Chapter {{ sprintf('%02d', $i) }}</h3>
+                        <h3 class="font-semibold text-sm">{{ __('series.chapter') }} {{ sprintf('%02d', $i) }}</h3>
                         <p class="text-xs font-thin">|</p>
                         <p class="chapter-title text-xs font-thin">Chapter Title Here</p>
                     </div>

@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', "Creator | Deva Scan")
+@section('title', __('creator.creator_title'))
 @section('content')
 @include('layout.navbar')
 @include('layout.navbarPop')

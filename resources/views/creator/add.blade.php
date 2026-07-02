@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', "Add Creation")
+@section('title', __('creator.add_creation'))
 @section('content')
 @include('layout.navbar')
 @include('layout.navbarPop')
