@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Sign In')
+@section('title', __('auth.log_in'))
 
 @section('content')
 
@@ -9,7 +9,7 @@
     <div class="signup-container">
 
         <h1 class="signup-title">
-            WELCOME BACK TO
+            {{ __('auth.welcome_back') }}
         </h1>
 
         <img
@@ -20,16 +20,16 @@
 
         <form action="{{ route('home.view') }}">
             <div class="input-group">
-                <label>Email Address</label>
+                <label>{{ __('auth.email') }}</label>
                 <input type="email">
             </div>
 
            
             <div class="input-group">
                 <div class="password-label">
-                    <label>Password</label>
+                    <label>{{ __('auth.password') }}</label>
                     <a href="{{ route('forgot-pw.view') }}" class="forgot-password">
-                        Forgot password?
+                        {{ __('auth.forgot_password') }}
                     </a>
                 </div>
                 <input type="password">
@@ -37,18 +37,19 @@
 
     
             <button type="submit" class="signup-button">
-                Log In
+                {{ __('auth.log_in') }}
             </button>
            
             <p class="or-text">
-                or
+                {{ __('auth.or') }}
             </p>
 
         
             <p class="login-text">
-                Are you new?
+                {{ __('auth.new_user') }}
+
                 <a href="{{ route('sign-up.view') }}">
-                    Sign up here!
+                    {{ __('auth.signup_here') }}
                 </a>
             </p>
 

@@ -8,7 +8,7 @@
     {{-- Rating --}}
     <button class="btn-rating">
         <span>★</span>
-        <span>Rating</span>
+        <span>{{ __('series.rating') }}</span>
     </button>
 
     {{-- Information Box --}}
@@ -24,12 +24,12 @@
 
             <div class="border-x border-[#FFD700]">
                 <h3 class="font-bold text-lg">{{$chapters}}</h3>
-                <p class="text-xs font-thin">Chapters</p>
+                <p class="text-xs font-thin">{{ __('series.chapters') }}</p>
             </div>
 
             <div>
                 <h3 class="font-bold text-lg">{{$bookmark}}</h3>
-                <p class="text-xs font-thin">Bookmarks</p>
+                <p class="text-xs font-thin">{{ __('series.bookmarks') }}</p>
             </div>
 
         </div>
@@ -41,12 +41,12 @@
         <div class="grid grid-cols-2 text-center">
 
             <div>
-                <p class="text-xs font-thin">Status</p>
+                <p class="text-xs font-thin">{{ __('series.status') }}</p>
                 <h3 class="font-bold text-lg">• {{$status}}</h3>
             </div>
 
             <div>
-                <p class="text-xs font-thin">Type</p>
+                <p class="text-xs font-thin">{{ __('series.type') }}</p>
                 <h3 class="font-bold text-lg">• {{$type}}</h3>
             </div>
 
@@ -59,12 +59,12 @@
         <div class="flex items-center justify-between">
 
             <div class="flex items-center gap-4 justify-between w-[40%]">
-                <p class="text-xs font-thin">Author</p>
+                <p class="text-xs font-thin">{{ __('series.author') }}</p>
                 <h3 class="text-xs font-bold">-</h3>
             </div>
             <span class="w-[.5px] h-[20px] bg-[#FFD700]"></span>
             <div class="flex items-center justify-between w-[40%]">
-                <p class="text-xs font-thin">Artist</p>
+                <p class="text-xs font-thin">{{ __('series.artist') }}</p>
                 <h3 class="text-xs font-bold">{{$artist}}</h3>
             </div>
 

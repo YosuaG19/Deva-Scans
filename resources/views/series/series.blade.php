@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', "Details | Deva Scan")
+@section('title', __('series.details_title'))
 
 @section('content')
 @include('layout.navbar')
