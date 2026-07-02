@@ -2,10 +2,10 @@
     @csrf
     {{-- Form Title --}}
     <span class="text-[#FFD700] text-left">
-        <h2 class="text-lg font-bold ">Delete Account</h2>
-        <p class="text-xs font-thin">Permanently delete your account and data</p>
+        <h2 class="text-lg font-bold ">{{ __('profile.delete_account') }}</h2>
+        <p class="text-xs font-thin">{{ __('profile.delete_account_desc') }}</p>
     </span>
 
     {{-- Subcription Content --}}
-    <button type="submit" class="btn-profile-edit">Delete Account</button>
+    <button type="submit" class="btn-profile-edit">{{ __('profile.delete_account_button') }}</button>
 </form>

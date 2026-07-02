@@ -70,7 +70,7 @@
         const dayButtons = document.querySelectorAll('.day-btn');
 
         const day = new Date().getDay();
-        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const days = window.days;
 
         dayButtons.forEach(button => {
             if (button.textContent.trim() === days[day]) {
