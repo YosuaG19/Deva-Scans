@@ -3,6 +3,7 @@
 @import './profile.css';
 @import './subs.css';
 @import './button.css';
+@import './creator.css';
 
 /* @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php'; */
 /* @source '../../storage/framework/views/*.php'; */
@@ -365,19 +366,30 @@ body{
 }
 
 .add-comic{
-    width: 100%;
+    min-width: 180px;
+    min-height: 280px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px #FFD700 dashed;
+    color: #8c8c8c;
+    font-size: 0.75rem;
+    border: 2px #8c8c8c dashed;
     border-radius: 5px;
     transition: ease-in-out 200ms;
 }
 
-.add-comic:hover div{
-    scale: 110%;
+.add-comic svg{
     transition: ease-in-out 200ms;
+}
+
+.add-comic:hover{
+    color: #FFD700;
+    border: 2px #FFD700 dashed;
+}
+
+.add-comic:hover svg{
+    fill: #FFD700;
 }
 
 @media screen and (max-width: 1024px) {
@@ -399,6 +411,11 @@ body{
 }
 
 @media screen and (max-width: 480px) {
+    .add-comic{
+        min-width: 161px;
+        min-height: 215px;
+    }
+
     .home-cont{
         flex-direction: column;
         align-items: center;
