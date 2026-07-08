@@ -3,8 +3,8 @@
 <div class="absolute w-[15vw] top-full left-0 mt-2 rounded bg-[#252525] z-50 hidden flex filter-timeline p-2">
     <div class="flex flex-col w-full gap-2 items-center text-black">
         <span class="flex w-full text-xs bg-[#252525] rounded overflow-hidden">
-            <button class="sort-button" name="sortOrder" value="asc">Asc</button>
-            <button class="sort-button active" name="sortOrder" value="desc">Desc</button>
+            <button class="sort-button" name="sortOrder" value="asc">{{ __('browse.asc') }}</button>
+            <button class="sort-button active" name="sortOrder" value="desc">{{ __('browse.desc') }}</button>
         </span>
         <span class="flex flex-col w-full text-xs rounded overflow-hidden">
             @foreach ($sorts as $sort)

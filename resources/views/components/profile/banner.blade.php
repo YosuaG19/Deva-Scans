@@ -5,12 +5,12 @@
 
     <div class="flex flex-col justify-between gap-4 md:gap-6 box-border">
         <span class="flex flex-col text-[#FFD700]">
-            <p class="text-xl font-bold">Username</p>
-            <p class="text-sm">Joined, timestamp</p>
+            <p class="text-xl font-bold">{{ __('profile.username') }}</p>
+            <p class="text-sm">{{ __('profile.joined', ['date' => 'timestamp']) }}</p>
         </span>
         <span class="flex gap-4">
-            <a href="{{route('profile.edit')}}" class="btn-profile">Edit Profile</a>
-            <button class="btn-profile">Log out</button>
+            <a href="{{route('profile.edit')}}" class="btn-profile">{{ __('profile.edit_profile') }}</a>
+            <button class="btn-profile">{{ __('profile.logout') }}</button>
         </span>
     </div>
 </div>

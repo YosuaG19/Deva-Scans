@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Forgot Password')
+@section('title', __('auth.forgot_password_title'))
 
 @section('content')
 
@@ -9,7 +9,7 @@
     <div class="signup-container">
 
         <h1 class="signup-title">
-            FORGOT PASSWORD?
+            {{ __('auth.forgot_password_title') }}
         </h1>
 
         <img
@@ -21,19 +21,20 @@
         <form action="#">
 
             <div class="input-group">
-                <label>Email Address</label>
+                <label>{{ __('auth.email') }}</label>
                 <input type="email">
             </div>
 
             <button type="submit" class="signup-button">
-                Send
+                {{ __('auth.send') }}
             </button>
 
 
             <p class="login-text">
-                Remember your password?
+                {{ __('auth.remember_password') }}
+
                 <a href="{{ route('sign-in.view') }}">
-                    Log In here
+                    {{ __('auth.login_here') }}
                 </a>
             </p>
 

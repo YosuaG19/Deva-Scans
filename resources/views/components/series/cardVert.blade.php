@@ -9,7 +9,7 @@
     <div class="flex flex-col justify-between py-.5 text-white">
         <span>
             <h3 class="comic-title-vert text-sm font-semibold">On The Way To Meet Mom</h3>
-            <p class="text-xs font-thin"><span class="text-[#FFD70090]">Genre : </span>Action, Adventure</p>
+            <p class="text-xs font-thin"><span class="text-[#FFD70090]">{{ __('series.genre') }} : </span>Action, Adventure</p>
         </span>
 
         {{-- <p class="text-xs font-thin">Last Updated TimeStamp</p> --}}

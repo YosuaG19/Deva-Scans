@@ -2,31 +2,31 @@
 
 return [
     [
-        'name' => 'Mon',
+        'name' => 'home.mon',
         'Logic' => 'mon.logic'
     ],
     [
-        'name' => 'Tue',
+        'name' => 'home.tue',
         'Logic' => 'tue.logic'
     ],
     [
-        'name' => 'Wed',
+        'name' => 'home.wed',
         'Logic' => 'wed.logic'
     ],
     [
-        'name' => 'Thu',
+        'name' => 'home.thu',
         'Logic' => 'thu.logic'
     ],
     [
-        'name' => 'Fri',
+        'name' => 'home.fri',
         'Logic' => 'fri.logic'
     ],
     [
-        'name' => 'Sat',
+        'name' => 'home.sat',
         'Logic' => 'sat.logic'
     ],
     [
-        'name' => 'Sun',
+        'name' => 'home.sun',
         'Logic' => 'sun.logic'
     ],
 ];
