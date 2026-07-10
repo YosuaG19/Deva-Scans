@@ -5,6 +5,6 @@
 @include('layout.navbar')
 @include('layout.navbarPop')
 
-@include('components.creator.series')
+@include('components.creator.add')
 
 @include('layout.footer')

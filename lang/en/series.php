@@ -36,7 +36,8 @@ return [
     'chapter' => 'Chapter',
 
     // Reaction
-    'reaction_title' => 'What do you think about this chapter?',
+    'reaction_chapter_title' => 'What do you think about this chapter?',
+    'reaction_series_title' => 'What do you think about this series?',
     'reactions' => 'reactions',
 
     'upvote' => 'Upvote',

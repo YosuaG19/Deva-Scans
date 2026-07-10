@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\creator;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ProfileEdit extends Component
+class selectLanguage extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class ProfileEdit extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.profile-edit');
+        return view('components.creator.select-language');
     }
 }

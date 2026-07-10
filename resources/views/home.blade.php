@@ -6,7 +6,7 @@
 @include('layout.navbar')
 
 {{-- Banner --}}
-r<div class="swiper mySwiper mt-6">
+<div class="swiper mySwiper mt-6">
     <div class="swiper-wrapper">
         @for ($i = 0; $i < 20; $i++)
             <div href="" class="swiper-slide flex !w-[180px] max-h-[240px]" data-url="{{ route('series.detail')}}">

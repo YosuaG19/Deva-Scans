@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\creator;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class CoverCard extends Component
+class manage extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class CoverCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.cover-card');
+        return view('components.creator.manage');
     }
 }

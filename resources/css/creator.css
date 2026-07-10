@@ -1,0 +1,121 @@
+#drop-zone{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  aspect-ratio: 3/4;
+  border: 2px dashed #8c8c8c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#panel-zone{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  aspect-ratio: 3/4;
+  border: 2px dashed #8c8c8c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.input-label{
+  display: flex;
+  width: 100%;
+  gap: 0.25rem;
+  flex-direction: column;
+  color: white;
+}
+
+.input-label label{
+  font-size: 0.75rem;
+  display: flex;
+  gap: 0.25rem;
+  align-items: start;
+}
+
+.input-label input, .input-label textarea, .input-label select, .input-label button{
+  font-size: 0.7rem;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #383838;
+}
+
+.creator-layout{
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+}
+
+.panel-layout{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+}
+
+.img-panel{
+  width: 100%;
+  position: relative;
+  height: fit-content;
+  object-fit: cover;
+  aspect-ratio: 3/4;
+}
+
+.del-panel-btn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c50000;
+  border-radius: 5px 0px 5px 5px;
+  cursor: pointer;
+}
+
+.num-panel{
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  left: 0;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFD700;
+  border-radius: 0px 5px 5px 5px;
+}
+
+@media screen and (max-width: 1024px) {
+    .panel-layout{
+        grid-template-columns: repeat(3, auto);
+    }
+
+    .creator-layout{
+      grid-template-columns: repeat(3, 2fr);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .panel-layout{
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .creator-layout{
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 1rem;
+      row-gap: 1.5rem;
+    }
+}

@@ -33,7 +33,8 @@ return [
 
     'chapter' => 'Chapter',
 
-    'reaction_title' => 'Apa pendapatmu tentang chapter ini?',
+    'reaction_chapter_title' => 'Apa pendapatmu tentang chapter ini?',
+    'reaction_series_title' => 'Apa pendapatmu tentang series ini?',
     'reactions' => 'reaksi',
 
     'upvote' => 'Suka',

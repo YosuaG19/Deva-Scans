@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\series;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SignInForm extends Component
+class chat extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class SignInForm extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.sign-in-form');
+        return view('components.series.chat');
     }
 }

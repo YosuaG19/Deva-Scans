@@ -14,9 +14,9 @@
     <div class="flex flex-col justify-between text-white max-w-[150px]">
         <span class="flex flex-col gap-1">
             <h3 class="comic-title text-sm font-semibold">On The Way To Meet Mom</h3>
-            <p class="text-xs font-thin py-1 px-2 rounded hover:bg-[#252525] text-white">{{ __('browse.chapters') }} xx</p>
-            <p class="text-xs font-thin py-1 px-2 rounded hover:bg-[#252525] text-white">{{ __('browse.chapters') }} xx</p>
-            <p class="text-xs font-thin py-1 px-2 rounded hover:bg-[#252525] text-white">{{ __('browse.chapters') }} xx</p>
+            <a href="{{ route('series.chapter', 1) }}" class="text-xs font-thin py-1 px-2 rounded hover:bg-[#252525] text-white">{{ __('browse.chapters') }} xx</a>
+            <a href="{{ route('series.chapter', 1) }}" class="text-xs font-thin py-1 px-2 rounded hover:bg-[#252525] text-white">{{ __('browse.chapters') }} xx</a>
+            <a href="{{ route('series.chapter', 1) }}" class="text-xs font-thin py-1 px-2 rounded hover:bg-[#252525] text-white">{{ __('browse.chapters') }} xx</a>
         </span>
         
         <button class="flex items-center gap-1 justify-center text-xs font-bold uppercase text-black p-1 bg-[#FFD700] rounded">
