@@ -12,5 +12,5 @@
     </a>
 </div>
 @include('components.profile.edit')
-@include('components.subscription.form')
+{{-- @include('components.subscription.form') --}}
 @include('components.profile.deleteForm')

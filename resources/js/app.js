@@ -7,6 +7,9 @@ import ChapterNavbar from './ChapterNavbar.js';
 import SelectLanguage from './SelectLanguage.js';
 import SelectGenre from './SelectGenre.js';
 import AddChapterPanel from './AddChapterPanel.js';
+import ForumFilter from './ForumFilter.js';
+import LikeDislikedComment from './LikeDislikedComment.js';
+import LangSwitch from './LangSwith.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded");
@@ -37,4 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     AddChapterPanel();
     console.log("AddChapterPanel OK");
+
+    ForumFilter();
+    console.log("ForumFilter OK");
+
+    LikeDislikedComment();
+    console.log("LikeDislikedComment ok")
+
+    LangSwitch();
+    console.log('LangSwitch ok')
 });

@@ -44,4 +44,11 @@ Route::view('/sign-in', 'auth.sign-in')->name('sign-in.view');
 
 Route::view('/forgot-pw', 'auth.forgot-pw')->name('forgot-pw.view');
 
+// routes/web.php
+
+use App\Http\Controllers\LanguageController;
+
+Route::post('/language', [LanguageController::class, 'change'])
+    ->name('language.change');
+
 // Route::get()

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\forum;
+namespace App\View\Components\series;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class chat extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.forum.chat');
+        return view('components.series.chat');
     }
 }

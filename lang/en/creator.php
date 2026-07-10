@@ -1,3 +1,5 @@
+<?php
+
 return [
 
     'creator_title' => 'Creator | Deva Scans',

@@ -7,10 +7,11 @@ export default function DayUpdated() {
     }
 
     const day = new Date().getDay();
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const days_en = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const days_id = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
 
     dayButtons.forEach(button => {
-        if (button.textContent.trim() === days[day]) {
+        if (button.textContent.trim() === days_en[day] || button.textContent.trim() == days_id[day]) {
             button.classList.add('active');
         }
     });
