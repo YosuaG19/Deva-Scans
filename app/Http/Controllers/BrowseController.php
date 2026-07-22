@@ -11,14 +11,78 @@ use Illuminate\Http\Request;
 
 class BrowseController extends Controller
 {
-    public function view(){
+    public function view(Request $request){
         $genres = Genres::get();
         $types = Types::get();
         $status = Status::get();
         $sorts = Sorts::get();
-        $all = Comics::get();
-        $comics = Comics::orderBy('Created_at')->paginate(12);
+        $direction = $request->input('direction', 'desc');
+
+        $query = Comics::query();
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('genre')) {
+            $selectedGenres = $request->genre;
+
+            $query
+                ->withCount([
+                    'genres as matched_genres_count' => function ($q) use ($selectedGenres) {
+                        $q->whereIn('genres.id', $selectedGenres);
+                    }
+                ])
+                ->whereHas('genres', function ($q) use ($selectedGenres) {
+                    $q->whereIn('genres.id', $selectedGenres);
+            });
+
+            $query->orderByDesc('matched_genres_count');
+
+        }
+
+        if ($request->filled('type')) {
+            $query->where('type_id', $request->type);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status_id', $request->status);
+        }
+
+        if ($request->filled('chapter')) {
+            $query->where('chapter_count', '>=', $request->chapter);
+        }
+
+        // dd($request->sort);
+        switch ($request->sort) {
+            case 1:
+                $query->latest();
+                break;
+
+            case 2:
+                $query->orderBy('bookmarks_count', $direction);
+                break;
+
+            case 3:
+                $query->orderBy('rating_avg', $direction);
+                break;
+
+            case 4:
+                $query->orderBy('title', $direction);
+                break;
+                
+            case 5:
+                $query->orderBy('last_chapter_at', $direction);
+                break;
+            
+            default:
+                $query->latest();
+        }
         
-        return view('browse', compact(['genres', 'types', 'status', 'sorts', 'comics', 'all']));
+        $comics = $query
+        ->paginate(12)
+        ->withQueryString();
+        // $comics = Comics::orderBy('Created_at')->paginate(12);
+        
+        return view('browse', compact(['genres', 'types', 'status', 'sorts', 'comics']));
     }
 }

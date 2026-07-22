@@ -2,7 +2,7 @@ import Navbar from './Navbar.js';
 import initBannerSwiper from './BannerSwiper.js';
 import DayUpdated from './DayUpdated.js';
 import AddCover from './AddCover.js';
-import BrowseFilterMobile from './BrowseFilterMobile.js';
+import BrowseFilter from './BrowseFilter.js';
 import ChapterNavbar from './ChapterNavbar.js';
 import SelectLanguage from './SelectLanguage.js';
 import SelectGenre from './SelectGenre.js';
@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     AddCover();
     console.log("AddCover OK");
 
-    BrowseFilterMobile();
-    console.log("BrowseFilterMobile OK");
+    BrowseFilter();
+    console.log("BrowseFilter OK");
     
     ChapterNavbar();
     console.log("ChapterNavbar OK");

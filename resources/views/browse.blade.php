@@ -5,7 +5,7 @@
 @section('content')
 @include('layout.navbar')
 
-<x-browse.banner :comics='$all' :sorts='$sorts' :types='$types' :status='$status' :genres='$genres' />
+<x-browse.banner :comics='$comics' :sorts='$sorts' :types='$types' :status='$status' :genres='$genres' />
 
 <x-browse.series :comics='$comics'/>
 {{-- @include('components.browse.series') --}}

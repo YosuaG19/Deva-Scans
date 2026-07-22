@@ -1,151 +1,202 @@
 export default function BrowseFilter() {
-    const filters = [
-        {
-            button: document.getElementById('timeline-btn'),
-            popup: document.querySelector('.filter-timeline')
-        },
-        {
-            button: document.getElementById('chapters-btn'),
-            popup: document.querySelector('.filter-chapter')
-        },
-        {
-            button: document.getElementById('genre-btn'),
-            popup: document.querySelector('.filter-genre')
-        },
-        {
-            button: document.getElementById('status-btn'),
-            popup: document.querySelector('.filter-status')
-        },
-        {
-            button: document.getElementById('type-btn'),
-            popup: document.querySelector('.filter-type')
-        }
-    ];
 
-    if (!filters.every(filter => filter.button && filter.popup)) {
-        return;
-    }
+    const containers = document.querySelectorAll('.filter-container');
 
-    console.log(filters);
+    if (!containers.length) return;
 
-    function closeAllPopups() {
-        filters.forEach(filter => {
-            filter.popup.classList.add('hidden');
-        });
-    }
+    let genreChanged = false;
+    let genreForm = null;
 
-    filters.forEach(filter => {
-        const buttons = filter.popup.querySelectorAll('.filter-button');
-        const genreButtons = filter.popup.querySelectorAll('.genre-button');
+    function closeAllPopups(except = null) {
 
-        const genreCountLabel = document.querySelector('.total-genre-label');
+        containers.forEach(container => {
 
-        const selectedGenres = new Set();
+            if (container === except) return;
 
-        genreButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            container.querySelector('.filter-popup')?.classList.add('hidden');
 
-                const value = button.value;
-
-                button.classList.toggle('active');
-
-                if (button.classList.contains('active')) {
-                    selectedGenres.add(value);
-                } else {
-                    selectedGenres.delete(value);
-                }
-
-                // update count UI
-                const count = selectedGenres.size;
-                console.log(count)
-
-                if (count === 0){
-                    genreCountLabel.classList.add('hidden');
-                    genreCountLabel.textContent = '';
-                }else{
-                    genreCountLabel.classList.remove('hidden')
-                    genreCountLabel.textContent = `${count}`;
-                }
-
-                console.log([...selectedGenres]);
-            });
         });
 
-        
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
+    }
 
-                // active logic ONLY inside this popup
-                buttons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+    containers.forEach(container => {
 
-                const selectedFilter = button.value;
-                console.log(filter.button.id)
-                
-                if (filter.button.id === 'timeline-btn') {
-                    const selectedLabel = document.querySelector('.selected-sort-label');
-                    selectedLabel.textContent = selectedFilter;
-                }else if (filter.button.id === 'type-btn') {
-                    const selectedLabel = document.querySelector('.selected-type-label');
-                    if (selectedFilter !== 'All'){
-                        selectedLabel.classList.remove('hidden');
-                        selectedLabel.textContent = `${selectedFilter}`;
-                    }else{
-                        selectedLabel.classList.add('hidden');
-                    }
-                }else if (filter.button.id === 'status-btn') {
-                    const selectedLabel = document.querySelector('.selected-status-label');
-                    if (selectedFilter !== 'All'){
-                        selectedLabel.classList.remove('hidden');
-                        selectedLabel.textContent = `${selectedFilter}`;
-                    }else{
-                        selectedLabel.classList.add('hidden');
-                    }
-                }else if (filter.button.id === 'chapter-btn'){
-                    const chapterForm = document.querySelector('.min-chapter-form');
-                    const chapterInput = document.querySelector('.min-chapter-input');
-                    const chapterLabel = document.querySelector('.min-chapter-label');
+        const trigger = container.querySelector('.filter-trigger');
+        const popup = container.querySelector('.filter-popup');
 
-                    chapterForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
+        if (!trigger || !popup) return;
 
-                        const value = chapterInput.value.trim();
+        // Find the form this filter belongs to
+        const form = container.closest('form');
 
-                        if (!value) {
-                            chapterLabel.textContent = 'Minimum Chapters';
+        const filterType = container.dataset.filter;
+
+        // ===========================
+        // Open popup
+        // ===========================
+
+        trigger.addEventListener('click', e => {
+
+            e.stopPropagation();
+
+            // Submit genre before opening another filter
+            if (
+                genreChanged &&
+                genreForm &&
+                genreForm !== form
+            ) {
+                genreChanged = false;
+                genreForm.submit();
+                return;
+            }
+
+            const opened = !popup.classList.contains('hidden');
+
+            closeAllPopups(container);
+
+            popup.classList.toggle('hidden', opened);
+
+        });
+
+        popup.addEventListener('click', e => e.stopPropagation());
+
+        // ===========================
+        // Inputs
+        // ===========================
+
+        popup.querySelectorAll('input').forEach(input => {
+
+            const label = input.closest('label');
+
+            if (input.checked) {
+                label?.classList.add('active');
+            }
+
+            input.addEventListener('change', () => {
+
+                // -----------------------
+                // Radio
+                // -----------------------
+
+                if (input.type === 'radio') {
+
+                    popup
+                        .querySelectorAll('label')
+                        .forEach(l => l.classList.remove('active'));
+
+                    label?.classList.add('active');
+
+                }
+
+                // -----------------------
+                // Checkbox
+                // -----------------------
+
+                if (input.type === 'checkbox') {
+
+                    label?.classList.toggle(
+                        'active',
+                        input.checked
+                    );
+
+                }
+
+                // -----------------------
+                // Genre counter
+                // -----------------------
+
+                if (filterType === 'genre') {
+
+                    const checked = popup.querySelectorAll(
+                        'input[name="genre[]"]:checked'
+                    );
+
+                    const badge =
+                        container.querySelector('.total-genre-label');
+
+                    if (badge) {
+
+                        if (checked.length) {
+
+                            badge.classList.remove('hidden');
+                            badge.textContent = checked.length;
+
                         } else {
-                            chapterLabel.textContent = `Minimum Chapters: ${value}+`;
+
+                            badge.classList.add('hidden');
+                            badge.textContent = '';
+
                         }
 
-                        filter.popup.classList.add('hidden');
-                    });
+                    }
+
                 }
 
-                console.log(filter.button.id, selectedFilter);
+                // -----------------------
+                // Submit
+                // -----------------------
 
-                // close ONLY this popup
-                filter.popup.classList.add('hidden');
+                if (filterType === 'genre') {
+
+                    genreChanged = true;
+                    genreForm = form;
+
+                } else {
+
+                    closeAllPopups();
+
+                    form.submit();
+
+                }
+
             });
+
         });
 
-        filter.button.addEventListener('click', (e) => {
-            e.stopPropagation();
-
-            const isOpen = !filter.popup.classList.contains('hidden');
-
-            closeAllPopups();
-
-            if (!isOpen) {
-                filter.popup.classList.remove('hidden');
-            }
-        });
-
-        filter.popup.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-
-        document.addEventListener('click', () => {
-            closeAllPopups();
-        });
     });
+
+    // ===========================
+    // Click outside
+    // ===========================
+
+    document.addEventListener('click', () => {
+
+        closeAllPopups();
+
+        if (genreChanged && genreForm) {
+
+            genreChanged = false;
+
+            genreForm.submit();
+
+        }
+
+    });
+
+    // ===========================
+    // Search
+    // ===========================
+
+    document.querySelectorAll('form').forEach(form => {
+
+        const search = form.querySelector('#search-series');
+
+        if (!search) return;
+
+        let timeout;
+
+        search.addEventListener('input', () => {
+
+            clearTimeout(timeout);
+
+            timeout = setTimeout(() => {
+
+                form.submit();
+
+            }, 500);
+
+        });
+
+    });
+
 }

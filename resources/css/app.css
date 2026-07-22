@@ -162,7 +162,7 @@
 
 .browse-layout{
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 2fr);
     column-gap: 1.5rem;
     row-gap: 1rem;
 }
@@ -439,7 +439,7 @@ body{
     }
 
     .browse-layout{
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: repeat(2, 2fr);
     }
 
     .profile-banner, .browse-banner{
@@ -474,7 +474,7 @@ body{
     }
     
     .browse-layout{
-        grid-template-columns: repeat(1, auto);
+        grid-template-columns: repeat(1, 2fr);
         row-gap: 1.5rem;
     }
 
