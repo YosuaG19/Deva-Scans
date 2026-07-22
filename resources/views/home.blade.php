@@ -8,11 +8,11 @@
 {{-- Banner --}}
 <div class="swiper mySwiper mt-6">
     <div class="swiper-wrapper">
-        @for ($i = 0; $i < 20; $i++)
-            <div href="" class="swiper-slide flex !w-[180px] max-h-[240px]" data-url="{{ route('series.detail')}}">
-                @include('components.series.cardBanner')
+        @foreach ($comics_banner as $comic)
+            <div href="" class="swiper-slide flex !w-[180px] max-h-[240px] overflow-hidden rounded-lg" data-url="{{ route('series.detail', $comic)}}">
+                <x-series.cardBanner :comic='$comic'/>
             </div>
-        @endfor
+        @endforeach
     </div>
 </div>
 
@@ -22,28 +22,50 @@
     <div class="series-cont gap-4">
         <h2>{{ __('home.update') }}</h2>
 
-        <div class="flex justify-between gap-1 md:gap-4 update-day">
+        <div class="sentence flex justify-between gap-1 md:gap-3 lg:gap-4 update-day">
             @foreach (config('date') as $day)
-                <button class="day-btn">
+                <button class="day-btn" data-day="{{ $day['value'] }}">
                     {{ __($day['name']) }}
                 </button>
             @endforeach
         </div>
 
-        <div class="series-layout">
-            @for ($i = 0; $i < 12; $i++)
-                @include('components.series.card')
-            @endfor
-        </div>
+
+        @foreach (config('date') as $day)
+            @php
+                $lim = 12;
+                $i = 0;
+            @endphp
+            <div class="update-content {{ $loop->first ? '' : 'hidden' }}" data-day="{{ $day['value'] }}">
+                <div class="series-layout">
+                    @foreach ($updates[$day['value']] ?? [] as $comic)
+                        @if ($lim == $i)
+                            @break;
+                        @endif
+                        <x-series.card :comic="$comic"/>
+
+                        @php
+                            $i += 1;
+                        @endphp
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
+
+        {{-- <div class="series-layout">
+            @foreach ($comics_upt as $comic)
+                <x-series.card :comic='$comic'/>
+            @endforeach
+        </div> --}}
     </div>
 
     <div class="series-cont gap-4">
         <h2>{{ __('home.recommended') }}</h2>
 
         <div class="series-layout-vert">
-            @for ($i = 0; $i < 5; $i++)
-                @include('components.series.cardVert')
-            @endfor
+            @foreach ($comics_rec as $comic)
+                <x-series.cardVert :comic='$comic'/>
+            @endforeach
         </div>
     </div>
 </div>
@@ -59,6 +81,10 @@
         __('home.sat'),
     ];
 @endphp
+
+{{-- <div class="text-white">
+    {{$updates}}
+</div> --}}
 
 <script>
     window.days = @json($days);

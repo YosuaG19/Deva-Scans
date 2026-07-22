@@ -2,18 +2,19 @@
 
 namespace App\View\Components\series;
 
+use App\Models\Chapters;
+use App\Models\Comics;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+
 class chat extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public Comics|Chapters $object;
+    public function __construct(Comics|Chapters $object)
     {
-        //
+        $this->object = $object;
     }
 
     /**

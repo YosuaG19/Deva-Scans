@@ -5,11 +5,11 @@ return [
 
     'update' => 'Update',
     'recommended' => 'Recommended',
-    'mon' => 'Mon',
-    'tue' => 'Tue',
-    'wed' => 'Wed',
-    'thu' => 'Thu',
-    'fri' => 'Fri',
-    'sat' => 'Sat',
-    'sun' => 'Sun'
+    'mon' => 'mon',
+    'tue' => 'tue',
+    'wed' => 'wed',
+    'thu' => 'thu',
+    'fri' => 'fri',
+    'sat' => 'sat',
+    'sun' => 'sun'
 ];

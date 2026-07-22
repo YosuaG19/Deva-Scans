@@ -13,9 +13,9 @@
             {{-- <button class="text-[#FFD700] uppercase font-semibold">{{ __('profile.your_comics') }}</button> --}}
         </div>
         <div class="series-layout">
-            @for ($i = 0; $i < 10; $i++)
-                @include('components.series.card')
-            @endfor
+            @foreach ($bookmark as $comic)
+                <x-series.card :comic="$comic"/>
+            @endforeach
         </div>
     </div>
 
@@ -23,9 +23,9 @@
         <h2 class="text-[#FFD700] text-xl font-bold uppercase">{{ __('profile.history') }}</h2>
 
         <div class="series-layout-vert">
-            @for ($i = 0; $i < 5; $i++)
-                @include('components.series.cardVert')
-            @endfor
+            @foreach ($history as $comic)
+                <x-series.cardVert :comic='$comic'/>
+            @endforeach
         </div>
     </div>
 </div>

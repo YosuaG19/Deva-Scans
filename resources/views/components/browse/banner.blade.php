@@ -1,46 +1,16 @@
-@props(['sorts', 'genres', 'status', 'types'])
-
 <div class="browse-banner bg-cover bg-center h-fit flex-col" style="background-image: url('{{ asset('images/profile-banner-bg.png') }}')">
     <span class="flex items-center gap-2 w-full">
-    <h3 class="text-2xl font-bold text-white">{{ __('browse.browse_series') }}</h3>        <p class="px-2 text-lg font-semibold bg-[#FFD700] text-black rounded">0</p>
+    <h3 class="text-2xl font-bold text-white">{{ __('browse.browse_series') }}</h3>        <p class="px-2 text-lg font-semibold bg-[#FFD700] text-black rounded"> {{$comics->count()}} </p>
     </span>
 
     <div class="flex flex-col w-full gap-2">
         <div class="flex justify-between">
-            <div class="gap-3 items-center md:flex hidden">
-                <span class="relative">
-                    <button id="timeline-btn" class="flex gap-2 items-center text-[#FFD700] border-[2px] border-[$FFD700] rounded text-xs px-4 py-1 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFD700"><path d="m480-360 160-160H320l160 160Zm0 280q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                        
-                        <span class="selected-sort-label">
-                            {{ __('browse.latest_update') }}
-                        </span>
-
-                    </button>
-                    <x-browse.filter-sorts :sorts='$sorts'/>
-                </span>
-                <span class="relative">
-                    <button id="status-btn" class="relative flex gap-2 items-center text-[#FFD700] border-[2px] border-[$FFD700] rounded text-xs px-4 py-1 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFD700"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                        
-                        <span class="flex gap-2 items-center">
-                            {{ __('browse.status') }}
-                            <span class="selected-status-label py-[.125rem] px-2  bg-[#FFD700] text-black rounded hidden"></span>
-                        </span>
-                    </button>
-                    <x-browse.filter-status :status='$status'/>
-                </span>
-                <span class="relative">
-                    <button id="type-btn" class="relative flex gap-2 items-center text-[#FFD700] border-[2px] border-[$FFD700] rounded text-xs px-4 py-1 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFD700"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-32₀Z"/></svg>
-                        
-                        <span class="flex gap-2 items-center">
-                            {{ __('browse.type') }}
-                            <span class="selected-type-label p-[.125rem] px-2  bg-[#FFD700] text-black rounded hidden"></span>
-                        </span>
-                    </button>
-                    <x-browse.filter-types :types='$types'/>
-                 </span>
+            <div class=" gap-3 items-center md:flex hidden">
+                <x-browse.filter-sorts :sorts='$sorts'/>
+                
+                <x-browse.filter-status :status='$status'/>
+                
+                <x-browse.filter-types :types='$types'/>
             </div>
 
             <span class="flex items-center bg-white rounded px-2 py-2 md:py-1 md:w-fit w-full">
@@ -53,33 +23,23 @@
             </span>
         </div>
         <div class="flex gap-3 items-center md:flex hidden">
-            <span class="relative">
-                <button id="genre-btn" class="relative flex gap-2 items-center text-[#FFD700] border-[2px] border-[$FFD700] rounded text-xs px-4 py-1 cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFD700"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                    
-                    <span class="flex gap-2 items-center">
-                        {{ __('browse.genres') }}
-                        <span class="total-genre-label selected-type-label p-[.125rem] px-[.375rem]  bg-[#FFD700] text-black rounded hidden"></span>
-                    </span>
-                </button>
-                <x-browse.filter-genre :genres='$genres'/>
-            </span>
+            
+            <x-browse.filter-genre :genres='$genres'/>
     
-            <span class="relative">
-                <button id="chapters-btn" class="relative flex gap-2 items-center text-[#FFD700] border-[2px] border-[$FFD700] rounded text-xs px-4 py-1 cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFD700"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                    
-                    <span class="flex gap-2 items-center">
-                        {{ __('browse.minimum_chapters') }}
-                        <span class="min-chapter-label selected-type-label p-[.125rem] px-[.375rem]  bg-[#FFD700] text-black rounded hidden"></span>
-                    </span>
-                </button>
-                <x-browse.filter-chapter/>
-            </span>
+            
+            <x-browse.filter-chapter/>
         </div>
-        <button class="relative flex gap-2 items-center justify-center text-[#FFD700] border-[2px] border-[$FFD700] rounded text-xs px-4 py-1 md:hidden cursor-pointer">
+
+
+        <button id="mobile-filter-btn" class="relative flex gap-2 items-center justify-center text-[#FFD700] border-[2px] border-[$FFD700] rounded text-xs px-4 py-1 md:hidden cursor-pointer">
             {{ __('browse.filter') }}
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFD700"><path d="M400-240v-80h160v80H400ZM240-440v-80h480v80H240ZM120-640v-80h720v80H120Z"/></svg>
         </button>
+
+        <div
+            id="mobile-filter-backdrop"
+            class="fixed inset-0 bg-black/50 hidden z-40">
+        </div>
+        <x-browse.filter-layout :sorts='$sorts' :types='$types' :status='$status' :genres='$genres'/>
     </div>
 </div>

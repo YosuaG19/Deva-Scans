@@ -2,7 +2,7 @@ import Navbar from './Navbar.js';
 import initBannerSwiper from './BannerSwiper.js';
 import DayUpdated from './DayUpdated.js';
 import AddCover from './AddCover.js';
-import BrowseFilter from './BrowseFilter.js';
+import BrowseFilterMobile from './BrowseFilterMobile.js';
 import ChapterNavbar from './ChapterNavbar.js';
 import SelectLanguage from './SelectLanguage.js';
 import SelectGenre from './SelectGenre.js';
@@ -10,6 +10,10 @@ import AddChapterPanel from './AddChapterPanel.js';
 import ForumFilter from './ForumFilter.js';
 import LikeDislikedComment from './LikeDislikedComment.js';
 import LangSwitch from './LangSwith.js';
+import MobileFilter from './MobileFilter.js';
+import ChapterListPanel from './ChapterListPanel.js';
+import PageOrientation from './PageOrientation.js';
+import PageOrientationPanel from './PageOrientationPanel.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded");
@@ -26,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     AddCover();
     console.log("AddCover OK");
 
-    BrowseFilter();
-    console.log("BrowseFilter OK");
+    BrowseFilterMobile();
+    console.log("BrowseFilterMobile OK");
     
     ChapterNavbar();
     console.log("ChapterNavbar OK");
@@ -49,4 +53,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     LangSwitch();
     console.log('LangSwitch ok')
+
+    MobileFilter();
+    console.log('MobileFilter ok')
+
+    ChapterListPanel();
+    console.log('ChapterListPanel ok')
+
+    PageOrientationPanel();
+    console.log('PageOrientationPanel ok')
+    
+    PageOrientation();
+    console.log('PageOrientation ok')
 });

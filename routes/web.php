@@ -3,13 +3,16 @@
 use App\Http\Controllers;
 use App\Http\Controllers\BrowseController;
 use App\Http\Controllers\CreatorController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeriesController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function(){
-    return view('home');
-})->name('home.view');
+Route::prefix('/')->name('home.')->group(function(){
+    Route::get('/updates', [HomeController::class, 'updates'])->name('update');
+    Route::get('/', [HomeController::class, 'homeView'])->name('view');
+});
+
 
 Route::get('/browse', [BrowseController::class, 'view'])->name('browse.view');
 
@@ -28,8 +31,8 @@ Route::prefix('creator')->name('creator.')->group(function(){
 });
 
 Route::prefix('series')->name('series.')->group(function(){
-    Route::get('/{chapter}', [SeriesController::class, 'chapter'])->name('chapter');
-    Route::get('/', [SeriesController::class, 'detail'])->name('detail');
+    Route::get('/{comic:slug}', [SeriesController::class, 'detail'])->name('detail');
+    Route::get('/{comic:slug}/{chapter}', [SeriesController::class, 'chapter'])->name('chapter');
 });
 
 Route::get('/sign-up', function(){

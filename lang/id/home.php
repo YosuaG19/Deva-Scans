@@ -5,11 +5,11 @@ return [
 
     'update' => 'Terbaru',
     'recommended' => 'Rekomendasi',
-    'mon' => 'Sen',
-    'tue' => 'Sel',
-    'wed' => 'Rab',
-    'thu' => 'Kam',
-    'fri' => 'Jum',
-    'sat' => 'Sab',
-    'sun' => 'Min'
+    'mon' => 'sen',
+    'tue' => 'sel',
+    'wed' => 'rab',
+    'thu' => 'kam',
+    'fri' => 'jum',
+    'sat' => 'sab',
+    'sun' => 'min'
 ];

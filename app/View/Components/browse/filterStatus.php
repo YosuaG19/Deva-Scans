@@ -4,16 +4,16 @@ namespace App\View\Components\browse;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class filterStatus extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public Collection $status;    
+
+    public function __construct(Collection $status)
     {
-        //
+        $this->status = $status;
     }
 
     /**

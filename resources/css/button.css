@@ -70,6 +70,55 @@
     border-radius: 1px;
 }
 
+.chapter-control-button .disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.chapter-control-button{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1rem;
+    padding-top: .375rem;
+    padding-bottom: .375rem;
+    gap: .375rem;
+    background: #FFD700;
+    border: 2px #FFD700 solid;
+}
+
+.chapter-control-button:hover{
+    background: transparent;
+    color: #FFD700;
+}
+
+.chapter-control-button:hover svg{
+    fill: #FFD700;
+}
+
+.chapter-control-button-disabled{
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1rem;
+    padding-top: .375rem;
+    padding-bottom: .375rem;
+    gap: .375rem;
+    background: #353535;
+    color: #656565;
+    border: 2px #353535 solid;
+}
+
+.chapter-control-button-disabled svg{
+    fill: #656565;
+}
+
+
 /* .status-button{
 
 } */
