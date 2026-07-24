@@ -40,7 +40,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'profile_picture' => 'Profile Picture',
+    'profile_picture' => 'Select Profile Picture',
     'change_photo' => 'Change Photo',
     'remove_photo' => 'Remove',
     'profile_picture_requirement' => 'Recommended: JPG, JPEG, or PNG. Maximum file size 2 MB.',

@@ -21,16 +21,28 @@
             </div>
         </div>
         <div class="flex justify-between items-center gap-6">
-            <div class="flex items-center gap-4">
-                <span class="text-white text-right">
-                    <p class="text-sm">Username</p>
-                    <p class="text-xs">Joined at Day Month, Year</p>
-                </span>
-                
-                <a href="{{route('profile.index')}}" class="w-[40px] h-[40px] rounded-full bg-white">
-                    {{-- <img src="{{asset('favicon.ico')}}" width="50" height="50" alt="logo"> --}}
+            @auth    
+                <div class="flex items-center gap-3">
+                    <span class="text-white text-right">
+                        <p class="text-xs text-[#FFD700]">{{ Auth::user()->name }}</p>
+                        <p class="text-[.6rem] font-thin">Since {{ Auth::user()->created_at->format('d M, Y') }}</p>
+                    </span>
+                    
+                    <a href="{{route('profile.index')}}" class="w-[40px] h-[40px] rounded-full bg-white">
+                        @php
+                            $user = Auth::user();
+                        @endphp
+                        <img src="{{asset('images/'.$user->pp_path.'.png')}}" width="50" height="50" alt="logo">
+                    </a>
+                    
+                </div>
+            @endauth
+            
+            @guest    
+                <a href="{{route('auth.sign_in')}}" class="bg-[#FFD700] border-2 border-[#FFD700] text-xs px-4 py-1.5 rounded hover:bg-transparent hover:text-[#FFD700]">
+                    Sign In
                 </a>
-            </div>
+            @endguest
 
             <button class="md:hidden hamburger deactive">
                 <span></span>

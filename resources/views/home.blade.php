@@ -5,6 +5,21 @@
 @section('content')
 @include('layout.navbar')
 
+@if(session('success'))
+    <div
+        id="success-popup"
+        class="fixed top-5 right-5 z-50 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg"
+    >
+        {{ session('success') }}
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('success-popup')?.remove();
+        }, 3000);
+    </script>
+@endif
+
 {{-- Banner --}}
 <div class="swiper mySwiper mt-6">
     <div class="swiper-wrapper">

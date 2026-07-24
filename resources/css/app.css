@@ -212,7 +212,7 @@ body{
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 1rem 6rem;
+    padding: 1rem 8rem;
     box-sizing: border-box;
     width: 100%;
     gap: 2.5rem;

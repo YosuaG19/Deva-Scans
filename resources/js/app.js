@@ -14,6 +14,7 @@ import MobileFilter from './MobileFilter.js';
 import ChapterListPanel from './ChapterListPanel.js';
 import PageOrientation from './PageOrientation.js';
 import PageOrientationPanel from './PageOrientationPanel.js';
+import ProfilePicSelection from './ProfilePicSelection.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded");
@@ -64,5 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('PageOrientationPanel ok')
     
     PageOrientation();
-    console.log('PageOrientation ok')
+    console.log('PageOrientation ok');
+
+    ProfilePicSelection();
+    console.log('ProfilePicSelection ok');
 });

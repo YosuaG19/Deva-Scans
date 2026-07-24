@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrowseController;
 use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\HomeController;
@@ -13,16 +14,23 @@ Route::prefix('/')->name('home.')->group(function(){
     Route::get('/', [HomeController::class, 'homeView'])->name('view');
 });
 
+Route::middleware('auth')->group(function(){
+    Route::prefix('profile')->name('profile.')->group(function(){
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+        Route::post('/edit/usr', [ProfileController::class, 'updateUsername'])->name('uptUser');
+        Route::post('/edit/pass', [ProfileController::class, 'updatePass'])->name('uptPass');
+        Route::post('/edit/pp', [ProfileController::class, 'updateProfile'])->name('uptPP');
+        Route::post('/edit/del', [AuthController::class, 'delete_acc'])->name('accDel');
+        Route::get('/sign_out', [AuthController::class, 'sign_out'])->name('sign_out');
+        Route::get('/', [ProfileController::class, 'view'])->name('index');
+    });
+    // Route::post('/bookmark');
+    // Route::post('/comment');
+    // Route::post('/reaction');
+});
 
 Route::get('/browse', [BrowseController::class, 'view'])->name('browse.view');
 
-Route::prefix('profile')->name('profile.')->group(function(){
-    Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
-    Route::post('/edit/usr', [ProfileController::class, 'updateUsername'])->name('uptUser');
-    Route::post('/edit/pass', [ProfileController::class, 'updatePass'])->name('uptPass');
-    Route::post('/edit/del', [ProfileController::class, 'delete'])->name('accDel');
-    Route::get('/', [ProfileController::class, 'view'])->name('index');
-});
 
 Route::prefix('creator')->name('creator.')->group(function(){
     Route::get('/manage', [CreatorController::class, 'manage'])->name('manage');
@@ -35,17 +43,18 @@ Route::prefix('series')->name('series.')->group(function(){
     Route::get('/{comic:slug}/{chapter}', [SeriesController::class, 'chapter'])->name('chapter');
 });
 
-Route::get('/sign-up', function(){
-    return view('auth.sign-up');
-})->name('sign-up.view');
+Route::prefix('auth')->name('auth.')->group(function(){
+    Route::get('/sign_in', [AuthController::class, 'sign_in'])->name('sign_in');
+    Route::post('/sign_in', [AuthController::class, 'validating_acc'])->name('acc_sign_in');
+    Route::get('/sign_up', [AuthController::class, 'sign_up'])->name('sign_up');
+    Route::post('/sign_up', [AuthController::class, 'create_acc'])->name('acc_sign_up');
+});
+
 
 Route::get('/subscription', function(){
     return view('subscriptions');
 })->name('subscriptions.view');
 
-Route::view('/sign-in', 'auth.sign-in')->name('sign-in.view');
-
-Route::view('/forgot-pw', 'auth.forgot-pw')->name('forgot-pw.view');
 
 // routes/web.php
 
