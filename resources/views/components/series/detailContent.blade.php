@@ -14,11 +14,28 @@
     </div>
 
     {{-- Buttons --}}
-    <div class="grid grid-cols-3 gap-2">
+    <div class="grid grid-cols-3 gap-2 items-center">
 
-        <button class="btn-detail">
-            {{ __('series.bookmark') }}
-        </button>
+        @php
+            $bookmarked = auth()->user()?->bookmarkedComics->contains($comic->id);
+        @endphp
+        @auth
+            <form method="POST" action="{{route('series.bookmark', $comic)}}" class="w-full">
+                @csrf
+                <button type="submit" class="btn-detail bookmark-btn rounded {{ $bookmarked ? 'active' : '' }}">
+                    @if ($bookmarked)
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Z"/></svg>
+                    @else
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg> 
+                    @endif
+                    {{ $bookmarked ? 'Bookmarked' : __('series.bookmark') }}
+                </button>
+            </form>
+            
+        @endauth
+        @guest
+            <a href="{{route('auth.acc_sign_in')}}">Sign In to Bookmark</a>    
+        @endguest
 
         <a href="{{ route('series.chapter', ['comic'=>$comic, 'chapter'=> $fc->numbering])}}" class="btn-detail">
             {{ __('series.first_chapter') }}

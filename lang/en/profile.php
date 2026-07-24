@@ -52,7 +52,7 @@ return [
     */
 
     'username_label' => 'Username',
-    'username_requirement' => '3–20 characters. Letters, numbers, and underscores only.',
+    'username_requirement' => '3–20 characters. Only numbers and characters.',
     'email_label' => 'Email',
 
     'username_placeholder' => 'Enter your username',

@@ -295,7 +295,7 @@ body{
     font-weight: 650;
     border-radius: .5rem;
     background: #FFD700;
-    border: 2px solid #FFD70000;
+    border: 2px solid #FFD700;
     transition: 200ms ease;
     cursor: pointer;
     text-transform: uppercase;

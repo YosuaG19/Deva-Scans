@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookmarks;
 use App\Models\Comics;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class ProfileController extends Controller
 {
     public function view(){
         $user = Auth::user();
-        $bookmark = Comics::orderBy('created_at')->take(8)->get();
+        $bookmark = Auth::user()->bookmarkedComics()->latest()->paginate(12);
+        // dd($bookmark);
         $history = Comics::orderBy('rating_avg')->take(5)->get();
         
         return view('profile.profile', compact('bookmark', 'history', 'user'));
@@ -94,7 +96,7 @@ class ProfileController extends Controller
         if (! in_array($validated['pp_path'], $pp_list, true)) {
             abort(400, 'Invalid profile picture.');
         }
-        
+
         $user->update([
             'pp_path' => $validated['pp_path']
         ]);
@@ -102,9 +104,15 @@ class ProfileController extends Controller
         return back()->with('success', 'Profile picture updated.');
     }
 
-    public function addBookmark(){
+    public function addBookmark(Comics $comic){
+        Auth::user()
+            ->bookmarkedComics()
+            ->toggle($comic->id);
 
+        return back();
     }
+
+
 
     public function addComment(){
 

@@ -14,7 +14,7 @@
         </div>
         <div class="series-layout">
             @foreach ($bookmark as $comic)
-                <x-series.card :comic="$comic"/>
+                <x-profile.card :comic="$comic"/>
             @endforeach
         </div>
     </div>

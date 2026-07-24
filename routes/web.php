@@ -24,12 +24,14 @@ Route::middleware('auth')->group(function(){
         Route::get('/sign_out', [AuthController::class, 'sign_out'])->name('sign_out');
         Route::get('/', [ProfileController::class, 'view'])->name('index');
     });
-    // Route::post('/bookmark');
     // Route::post('/comment');
     // Route::post('/reaction');
 });
 
-Route::get('/browse', [BrowseController::class, 'view'])->name('browse.view');
+Route::prefix('/browse')->name('browse.')->group(function(){
+    Route::post('/{comic:slug}/bookmark', [ProfileController::class, 'addBookmark'])->middleware('auth')->name('bookmark');
+    Route::get('/', [BrowseController::class, 'view'])->name('view');
+});
 
 
 Route::prefix('creator')->name('creator.')->group(function(){
@@ -39,6 +41,7 @@ Route::prefix('creator')->name('creator.')->group(function(){
 });
 
 Route::prefix('series')->name('series.')->group(function(){
+    Route::post('/{comic:slug}/bookmark', [ProfileController::class, 'addBookmark'])->middleware('auth')->name('bookmark');
     Route::get('/{comic:slug}', [SeriesController::class, 'detail'])->name('detail');
     Route::get('/{comic:slug}/{chapter}', [SeriesController::class, 'chapter'])->name('chapter');
 });

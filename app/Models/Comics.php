@@ -50,6 +50,16 @@ class Comics extends Model
         return $this->hasMany(Bookmarks::class, 'comic_id');
     }
 
+    public function bookmarkedBy()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'bookmarks',
+            'comic_id',
+            'user_id'
+        )->withTimestamps();
+    }
+
     public function comments():MorphMany{
         return $this->morphMany(comments::class, 'commentable')->latest();
     }
@@ -71,4 +81,8 @@ class Comics extends Model
             'genre_id'
         );
     }
+
+    // app/Models/Comic.php
+
+
 }
