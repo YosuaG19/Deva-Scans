@@ -23,8 +23,7 @@
         <p class="text-[.55rem]">{{$ttl_reaction}} {{ __('series.reactions') }}</p>
     </span>
     <x-series.reaction :reaction='$reaction'/>
-
-    <x-series.chat :object=$comic/>
+    <x-series.chat :object="$comic" :action="route('series.addCommentCommic', $comic)" />
 </div>
 
 @include('layout.footer')

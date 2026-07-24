@@ -8,7 +8,7 @@
 
 @section('content')
 
-<x-series.chapter :comic='$comic' :fc='$fc' :lc='$lc' :chapter='$chapter'/>
+<x-series.chapter :comic="$comic" :fc="$fc" :lc="$lc" :chapter="$chapter"/>
 @include('components.series.chapterNavigation')
 
 <div class="flex flex-col items-center mx-auto bg-[#151515] rounded-lg h-fit md:w-[80%] w-[95%] p-6 mt-6 gap-4">
@@ -17,8 +17,7 @@
         <p class="text-[.55rem]">{{$ttl_reaction}} {{ __('series.reactions') }}</p>
     </span>
     <x-series.reaction :reaction='$reaction'/>
-
-    <x-series.chat :object='$chapter'/>
+    <x-series.chat :object="$chapter" :action="route('series.addCommentChapter', ['chapter' => $chapter, 'comic' => $comic])"/>
     {{-- @include('components.series.chat') --}}
 </div>
 

@@ -12,9 +12,11 @@ use Illuminate\View\Component;
 class chat extends Component
 {
     public Comics|Chapters $object;
-    public function __construct(Comics|Chapters $object)
+    public string $action;
+    public function __construct(Comics|Chapters $object, string $action)
     {
         $this->object = $object;
+        $this->action = $action;
     }
 
     /**

@@ -15,6 +15,7 @@ import ChapterListPanel from './ChapterListPanel.js';
 import PageOrientation from './PageOrientation.js';
 import PageOrientationPanel from './PageOrientationPanel.js';
 import ProfilePicSelection from './ProfilePicSelection.js';
+import CommentCharCounter from './CommentCharCounter.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded");
@@ -69,4 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ProfilePicSelection();
     console.log('ProfilePicSelection ok');
+
+    CommentCharCounter();
+    console.log('CommentCharCounter ok');
 });

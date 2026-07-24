@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookmarks;
+use App\Models\Chapters;
 use App\Models\Comics;
+use App\Models\Comments;
 use App\Models\User;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -109,13 +112,39 @@ class ProfileController extends Controller
             ->bookmarkedComics()
             ->toggle($comic->id);
 
-        return back();
+        // return back();
     }
 
 
 
-    public function addComment(){
+    public function addCommentComic(Request $request, Comics $comic){
+        $validated = $request->validate([
+            'comment' => ['required', 'max:200']
+        ]);    
+        $user = Auth::user();
+        // dd($comic, $comic->id);
+        $comic->comments()->create([
+            'user_id' => $user->id,
+            'content' => $validated['comment'],
+            // 'commentable_id' => $comic->id
+        ]);
 
+        return back();
+    }
+
+    public function addCommentChapter(Request $request, Comics $comic, Chapters $chapter){
+        $validated = $request->validate([
+            'comment' => ['required', 'max:200']
+        ]);    
+        $user = Auth::user();
+        // dd($chapter, $chapter->id);
+        $chapter->comments()->create([
+            'user_id' => $user->id,
+            'content' => $validated['comment'],
+            // 'commentable_id' => $chapter->id
+        ]);
+
+        return back();
     }
 
     public function addReaction(){

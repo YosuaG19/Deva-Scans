@@ -42,7 +42,9 @@ Route::prefix('creator')->name('creator.')->group(function(){
 
 Route::prefix('series')->name('series.')->group(function(){
     Route::post('/{comic:slug}/bookmark', [ProfileController::class, 'addBookmark'])->middleware('auth')->name('bookmark');
+    Route::post('/{comic:slug}/comment', [ProfileController::class, 'addCommentComic'])->middleware('auth')->name('addCommentCommic');
     Route::get('/{comic:slug}', [SeriesController::class, 'detail'])->name('detail');
+    Route::post('/{comic:slug}/{chapter}/comment', [ProfileController::class, 'addCommentChapter'])->middleware('auth')->name('addCommentChapter');
     Route::get('/{comic:slug}/{chapter}', [SeriesController::class, 'chapter'])->name('chapter');
 });
 
