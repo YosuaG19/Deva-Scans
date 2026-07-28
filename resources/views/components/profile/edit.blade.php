@@ -10,8 +10,6 @@
         <h3 class="text-sm font-semibold">{{ __('profile.profile_picture') }}</h3>
         <form method="POST" action="{{route('profile.uptPP')}}" class="flex gap-4 items-center">
             @csrf
-            {{-- <input type="hidden" name="pp_path" id="pp_path" value="{{ $user->pp_path }}"> --}}
-
             @foreach ($pp_list as $pp)
                 <button
                     type="submit"

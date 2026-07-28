@@ -5,13 +5,11 @@
 @include('layout.navbar')
 @include('components.profile.banner')
 
-<div class="home-cont">
+<div class="home-cont lg:min-h-[40vh]">
 
     <div class="series-cont gap-4">
-        <div class="flex gap-4">
-            <button class="text-[#FFD700] uppercase font-semibold">{{ __('profile.bookmarks') }}</button>
-            {{-- <button class="text-[#FFD700] uppercase font-semibold">{{ __('profile.your_comics') }}</button> --}}
-        </div>
+        <h2 class="text-[#FFD700] text-xl font-bold uppercase">{{ __('profile.bookmarks') }}</h2>
+        
         <div class="series-layout md:min-w-[40vw]">
             @if ($bookmark->isEmpty())
                 <p class="text-[#FFFFFF90] text-xs w-full">No Boookmarked Comic yet</p>
@@ -24,13 +22,18 @@
         </div>
     </div>
 
-    <div class="series-cont gap-2">
+    <div class="series-cont gap-4">
         <h2 class="text-[#FFD700] text-xl font-bold uppercase">{{ __('profile.history') }}</h2>
 
-        <div class="series-layout-vert">
-            @foreach ($history as $comic)
-                <x-series.cardVert :comic='$comic'/>
-            @endforeach
+        <div class="series-layout-vert md:min-w-[25vw]">
+            @if ($history->isEmpty())
+                <p class="text-[#FFFFFF90] text-xs w-full">No History Yet</p>
+            @else
+                @foreach ($history as $his)
+                    <x-profile.cardVert :history='$his'/>
+                @endforeach
+            @endif
+
         </div>
     </div>
 </div>

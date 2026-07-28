@@ -66,12 +66,6 @@
                 </div>
             </div>
         @endforeach
-
-        {{-- <div class="series-layout">
-            @foreach ($comics_upt as $comic)
-                <x-series.card :comic='$comic'/>
-            @endforeach
-        </div> --}}
     </div>
 
     <div class="series-cont gap-4">
@@ -96,10 +90,6 @@
         __('home.sat'),
     ];
 @endphp
-
-{{-- <div class="text-white">
-    {{$updates}}
-</div> --}}
 
 <script>
     window.days = @json($days);

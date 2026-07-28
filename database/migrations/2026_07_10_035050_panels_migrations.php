@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('panels', function(Blueprint $table){
             $table->id();
-            $table->foreignId('chapter_id');
+            $table->foreignId('chapter_id')->constrained()->cascadeOnDelete();
             $table->integer('page_number');
             $table->string('img_path');
             $table->timestamps();

@@ -11,7 +11,5 @@
         <p class="group-hover:text-white">{{ __('profile.back_to_profile') }}</p>
     </a>
 </div>
-{{-- @include('components.profile.edit')     --}}
 <x-profile.edit :user='$user'/>
-{{-- @include('components.subscription.form') --}}
 @include('components.profile.deleteForm')

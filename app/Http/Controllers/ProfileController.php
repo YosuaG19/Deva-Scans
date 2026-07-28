@@ -7,6 +7,7 @@ use App\Models\Chapters;
 use App\Models\Comics;
 use App\Models\Comments;
 use App\Models\Ratings;
+use App\Models\ReadingHistory;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
@@ -24,7 +25,19 @@ class ProfileController extends Controller
         $bookmark = $user->bookmarkedComics()->latest()->paginate(12);
         
         // dd($bookmark);
-        $history = Comics::orderBy('rating_avg')->take(5)->get();
+        $history = null;
+        if ($user) {
+            // $history = Comics::select('comics.*')
+            //     ->join('readingHistory', 'comics.id', '=', 'readingHistory.comic_id')
+            //     ->where('readingHistory.user_id', $user->id)
+            //     ->orderByDesc('readingHistory.updated_at')
+            //     ->limit(5)
+            //     ->get();
+            $history = ReadingHistory::where([
+                    'user_id' => $user->id,
+                ])
+                ->orderBy('updated_at', 'desc')->take(5)->get();
+        }
         
         return view('profile.profile', compact('bookmark', 'history', 'user'));
         }

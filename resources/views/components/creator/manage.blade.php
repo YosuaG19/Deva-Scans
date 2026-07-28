@@ -91,17 +91,6 @@
 
                 <input type="file" id="file-input" class="hidden" multiple accept="image/*" />
             </label>
-
-            
-            {{-- @for ($i = 12; $i > 0; $i--)
-                <div class="flex w-full h-fit aspect-[3/4] relative">
-                    @include('components.series.cardCover')
-                    
-                    <span class="absolute top-2 right-2 h-[25px] w-[25px] flex items-center gap-1 justify-center text-xs font-bold uppercase text-black p-1 bg-[#FFD700] rounded">
-                        {{$i}}
-                    </span>
-                </div>
-            @endfor --}}
         </div>
     </div>
 </div>
