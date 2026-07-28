@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Reactions extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'type',
+    ];
+    
     public function reactionable(){
         return $this->morphTo();
     }

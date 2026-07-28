@@ -309,7 +309,9 @@ body{
 
 .btn-rating{
     width: 100%;
+    cursor: pointer;
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     color: #FFD700;
@@ -318,6 +320,11 @@ body{
     padding: .375rem;
     gap: .5rem;
     font-weight: 500;
+}
+
+.rating-btn.active{
+    background: #FFD700;
+    color: black;
 }
 
 .btn-chapter{
@@ -359,6 +366,10 @@ body{
 .btn-chapter:hover{
     color: #FFD700;
     border: 2px solid #FFD700;
+}
+
+.comment-input.disabled{
+    cursor: not-allowed;
 }
 
 .btn-genre{

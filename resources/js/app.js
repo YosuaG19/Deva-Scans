@@ -16,6 +16,10 @@ import PageOrientation from './PageOrientation.js';
 import PageOrientationPanel from './PageOrientationPanel.js';
 import ProfilePicSelection from './ProfilePicSelection.js';
 import CommentCharCounter from './CommentCharCounter.js';
+import ReactionSelection from './ReactionSelection.js';
+import CommentForm from './CommentForm.js';
+import RatingPanel from './RatingPanel.js';
+import RatingSelection from './RatingSelection.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded");
@@ -67,10 +71,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     PageOrientation();
     console.log('PageOrientation ok');
+    
+    CommentForm();
+    console.log('CommentForm ok');
+    
+    CommentCharCounter();
+    console.log('CommentCharCounter ok');
 
     ProfilePicSelection();
     console.log('ProfilePicSelection ok');
 
-    CommentCharCounter();
-    console.log('CommentCharCounter ok');
+    ReactionSelection();
+    console.log('ReactionSelection ok');
+
+    RatingPanel();
+    console.log('RatingPanel ok');
+
+    RatingSelection()
+    console.log('RatingSelection ok');
 });

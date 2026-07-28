@@ -26,7 +26,9 @@ class Comics extends Model
         'author',
         'artist',
         'type_id',
-        'status_id'
+        'status_id',
+        'rating_avg',
+        'rating_count'
     ];
 
     public function type(): BelongsTo{

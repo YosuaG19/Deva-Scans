@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Comics;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SeriesController extends Controller
 {
     public function detail(Comics $comic){
         $fc = $comic->chapters->sortBy('numbering')->first();
         $lc = $comic->chapters->sortByDesc('numbering')->first();
+
         $reaction = $comic->reactions()
             ->select('type')
             ->selectRaw('COUNT(*) as total')
@@ -37,7 +39,6 @@ class SeriesController extends Controller
             ->selectRaw('COUNT(*) as total')
             ->groupBy('type')
             ->get();
-        
         $ttl_reaction = 0;
         foreach($reaction as $react){
             $ttl_reaction += $react->total;

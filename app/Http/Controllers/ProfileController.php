@@ -6,19 +6,22 @@ use App\Models\Bookmarks;
 use App\Models\Chapters;
 use App\Models\Comics;
 use App\Models\Comments;
+use App\Models\Ratings;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
 {
     public function view(){
+        /** @var \App\Models\User $user */
         $user = Auth::user();
-        $bookmark = Auth::user()->bookmarkedComics()->latest()->paginate(12);
+        $bookmark = $user->bookmarkedComics()->latest()->paginate(12);
         // dd($bookmark);
         $history = Comics::orderBy('rating_avg')->take(5)->get();
         
@@ -40,6 +43,7 @@ class ProfileController extends Controller
         ]);
 
         $updated_value = [];
+        /** @var \App\Models\User $user */
         $user = Auth::user();
         
         if ($validate['name'] != $user->name){
@@ -59,6 +63,7 @@ class ProfileController extends Controller
     }
 
     public function updatePass(Request $request){
+        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         $validated = $request->validate([
@@ -85,7 +90,8 @@ class ProfileController extends Controller
     }
 
     public function updateProfile(Request $request){
-        $user = Auth::user();
+    /** @var \App\Models\User $user */    
+    $user = Auth::user();
         $pp_list = [
           'profile-pic-1',
           'profile-pic-2',
@@ -108,11 +114,12 @@ class ProfileController extends Controller
     }
 
     public function addBookmark(Comics $comic){
-        Auth::user()
-            ->bookmarkedComics()
-            ->toggle($comic->id);
+        /** @var \App\Models\User $user */    
+        $user = Auth::user();
 
-        // return back();
+        $user->bookmarkedComics()->toggle($comic->id);
+
+        return back();
     }
 
 
@@ -122,14 +129,21 @@ class ProfileController extends Controller
             'comment' => ['required', 'max:200']
         ]);    
         $user = Auth::user();
-        // dd($comic, $comic->id);
-        $comic->comments()->create([
+        $comment = $comic->comments()->create([
             'user_id' => $user->id,
             'content' => $validated['comment'],
-            // 'commentable_id' => $comic->id
+            'upvote' => 0,
+            'downvote' => 0
         ]);
 
-        return back();
+        $comment->load('user');
+
+        return response()->json([
+            'success' => true,
+            'html' => view('components.series.comment-card', [
+                'comment' => $comment,
+            ])->render(),
+        ]);
     }
 
     public function addCommentChapter(Request $request, Comics $comic, Chapters $chapter){
@@ -137,17 +151,135 @@ class ProfileController extends Controller
             'comment' => ['required', 'max:200']
         ]);    
         $user = Auth::user();
-        // dd($chapter, $chapter->id);
-        $chapter->comments()->create([
+        $comment = $chapter->comments()->create([
             'user_id' => $user->id,
             'content' => $validated['comment'],
-            // 'commentable_id' => $chapter->id
+            'upvote' => 0,
+            'downvote' => 0
         ]);
 
-        return back();
+        $comment->load('user');
+        
+        return response()->json([
+            'success' => true,
+            'html' => view('components.series.comment-card', [
+                'comment' => $comment,
+            ])->render(),
+        ]);
     }
 
-    public function addReaction(){
+    public function addReactionComic(Request $request, Comics $comic){
+        $validated = $request->validate([
+            'reaction' => ['required'],
+        ]);
+        $user = Auth::user();
+        $reaction = $comic->reactions()
+            ->where('user_id', $user->id)
+            ->first();
 
+        if (!$reaction) {
+            $comic->reactions()->create([
+                'user_id' => $user->id,
+                'type' => $validated['reaction']
+            ]);
+        } elseif ($reaction->type === $validated['reaction']) {
+            $reaction->delete();
+            $validated['reaction'] = null;
+        } else {
+            $reaction->update([
+                'type' => $validated['reaction'],
+            ]);
+        }
+
+        $counts = $comic->reactions()
+            ->selectRaw('type, COUNT(*) as total')
+            ->groupBy('type')
+            ->pluck('total', 'type');
+
+        return response()->json([
+            'success' => true,
+            'reaction' => $validated['reaction'],
+            'counts' => $counts,
+        ]);
+    }
+
+    public function addReactionChapter(Request $request, Comics $comic, Chapters $chapter){
+        $validated = $request->validate([
+            'reaction' => ['required'],
+        ]);
+
+        $user = Auth::user();
+        $reaction = $chapter->reactions()
+            ->where('user_id', $user->id)
+            ->first();
+
+        if (!$reaction) {
+            $chapter->reactions()->create([
+                'user_id' => $user->id,
+                'type' => $validated['reaction']
+            ]);
+        } elseif ($reaction->type === $validated['reaction']) {
+            $reaction->delete();
+        } else {
+            $reaction->update([
+                'type' => $validated['reaction'],
+            ]);
+        }
+
+        $counts = $chapter->reactions()
+            ->selectRaw('type, COUNT(*) as total')
+            ->groupBy('type')
+            ->pluck('total', 'type');
+
+        return response()->json([
+            'success' => true,
+            'reaction' => $validated['reaction'],
+            'counts' => $counts,
+        ]);
+    }
+
+    public function addRating(Request $request, Comics $comic){
+        $user = Auth::user();
+        $validated = $request->validate([
+            'rate' => 'required|integer|min:1|max:10',
+        ]);
+
+        $rating = $comic->ratings()
+            ->where('user_id', $user->id)->first();
+        
+        $update = $rating ? true : false;
+        if (!$rating){
+            $rating = Ratings::create([
+                'comic_id' => $comic->id,
+                'user_id' => $user->id,
+                'rate' => $validated['rate']
+            ]);
+            $update = true;
+        }else if ($rating->rate == $validated['rate']){
+            $rating->delete();  
+            $update = false;
+        }else{
+            $rating->update([
+                'rate' => $validated['rate']
+            ]);
+        }
+
+        $comic->refresh();
+
+        $avg = round($comic->ratings()->avg('rate') ?? 0, 1);
+        $count = $comic->ratings()->count();
+
+        $comic->update([
+            'rating_avg' => $avg,
+            'rating_count' => $count,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'action' => $update,
+            'average' => $avg,
+            'count' => $count,
+            'rate' => (int) $rating->rate,
+        ]);
     }
 }
