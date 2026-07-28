@@ -1,6 +1,6 @@
 <section class="flex flex-col gap-4 items-center mt-6 min-h-[30vh] md:min-h-[60vh] lg:min-h-[30vh] h-fit">
     <div class="series-cont items-center w-fit gap-4">
-        <div class="browse-layout">
+        <div class="browse-layout md:min-w-[80vw]">
             @foreach ($comics as $comic)
                 <x-browse.card :comic='$comic'/>
             @endforeach

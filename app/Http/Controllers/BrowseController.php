@@ -12,11 +12,21 @@ use Illuminate\Http\Request;
 class BrowseController extends Controller
 {
     public function view(Request $request){
+        if (!$request->has('sort')) {
+            return redirect()->route('browse.view', [
+                'sort' => 1,
+                'type' => 1,
+                'status' => 1,
+                'direction' => 'desc',
+            ]);
+        }
+
         $genres = Genres::get();
         $types = Types::get();
         $status = Status::get();
         $sorts = Sorts::get();
         $direction = $request->input('direction', 'desc');
+
 
         $query = Comics::query();
         if ($request->filled('search')) {
@@ -40,11 +50,11 @@ class BrowseController extends Controller
 
         }
 
-        if ($request->filled('type')) {
+        if ($request->filled('type') && $request->type !== '1') {
             $query->where('type_id', $request->type);
         }
 
-        if ($request->filled('status')) {
+        if ($request->filled('status') && $request->status !== '1') {
             $query->where('status_id', $request->status);
         }
 

@@ -1,5 +1,5 @@
 <div class="flex gap-2 w-full">
-    <a  href="{{ route('series.detail', $comic) }}" class="flex relative w-fit series-hover h-[172px] md:h-[180px] aspect-[3/4] bg-white overflow-hidden">
+    <a  href="{{ route('series.detail', $comic) }}" class="flex relative w-fit series-hover h-[172px] md:min-w-[125px] md:h-[180px] aspect-[3/4] bg-white overflow-hidden">
         @php
             $path = $comic->cover_path
         @endphp
