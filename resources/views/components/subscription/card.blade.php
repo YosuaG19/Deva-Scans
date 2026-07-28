@@ -8,7 +8,7 @@
                 <h3 class="text-4xl text-[#FFD700] font-semibold">$1.99</h3>
                 <span class="text-sm">/ Month</span>
             </div>
-            <button class="px-6 py-1 text-xs rounded absolute -bottom-4 bg-[#FFD700] text-black border-2 border-[#FFD700] hover:bg-[#151515] hover:text-[#FFD700] font-semibold">Get Monthly</button>
+            <a href="{{route('subscriptions.getSubs')}}" class="px-6 py-1 text-xs rounded absolute -bottom-4 bg-[#FFD700] text-black border-2 border-[#FFD700] hover:bg-[#151515] hover:text-[#FFD700] font-semibold">Get Monthly</a>
         </div>
     
         <div class="subs-card text-white relative flex flex-col py-10 px-4 rounded-lg items-center border-2 border-[#FFD700]">
@@ -17,7 +17,7 @@
                 <h3 class="text-4xl text-[#FFD700] font-semibold">$19.99</h3>
                 <span class="text-sm">/ Year</span>
             </div>
-            <button class="px-6 py-1 text-xs rounded absolute -bottom-4 bg-[#FFD700] text-black border-2 border-[#FFD700] hover:bg-[#151515] hover:text-[#FFD700] font-semibold">Get Yearly</button>
+            <a href="{{route('subscriptions.getSubs')}}" class="px-6 py-1 text-xs rounded absolute -bottom-4 bg-[#FFD700] text-black border-2 border-[#FFD700] hover:bg-[#151515] hover:text-[#FFD700] font-semibold">Get Yearly</a>
         </div>
     </div>
 </div>

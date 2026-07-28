@@ -12,12 +12,15 @@
                 <a href="{{ route('browse.view') }}" class="nav-button">
                     Browse
                 </a>
-                <a href="{{ route('creator.view') }}" class="nav-button">
-                    Creator
-                </a>
-                <a href="{{ route('subscriptions.view') }}" class="nav-button relative">
-                    Deva<span class="text-[.4rem] invisible">+</span> <span class="text-[.7rem] absolute top-1 right-2">+</span>
-                </a>
+
+                @auth    
+                    <a href="{{ route('creator.view') }}" class="nav-button">
+                        Creator
+                    </a>
+                    <a href="{{ route('subscriptions.view') }}" class="nav-button relative">
+                        Deva<span class="text-[.4rem] invisible">+</span> <span class="text-[.7rem] absolute top-1 right-2">+</span>
+                    </a>
+                @endauth
             </div>
         </div>
         <div class="flex justify-between items-center gap-6">

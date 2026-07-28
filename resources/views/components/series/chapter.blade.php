@@ -25,21 +25,18 @@
             </span>
 
             <span class="flex gap-2 items-center relative">
-                {{-- <button class="p-2 bg-[#FFD700] h-fit rounded">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240ZM330-120 120-330v-300l210-210h300l210 210v300L630-120H330Z"/></svg>
-                </button> --}}
                 <button id="pageOrientationBtn" class="cursor-pointer p-2 bg-[#FFD700] h-fit rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-160q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q46-24 96-36t102-12q58 0 113.5 15T480-740v484q51-32 107-48t113-16q36 0 70.5 6t69.5 18v-480q15 5 29.5 10.5T898-752q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59Zm80-200v-380l200-200v400L560-360Z"/></svg>
                 </button>
 
                 <div id="pageOrientationPanel" class="text-white hidden w-[30vw] md:w-[15vw] lg:w-[10vw] absolute top-full right-0 flex flex-col bg-[#252525] p-2 rounded overflow-hidden">
-                    <button data-orientation="vertical" class="orientation-btn flex gap-1 text-[.65rem] items-center justify-center py-2 px-4 hover:bg-[#FFD700] hover:text-black">
+                    <button data-orientation="vertical" class="orientation-btn flex gap-1 text-[.65rem] items-center justify-center py-2 px-2 hover:bg-[#FFD700] hover:text-black">
                         Vertical
                     </button>
-                    <button data-orientation="horizontal-western" class="orientation-btn flex gap-1 text-[.65rem] items-center justify-center py-2 px-4 hover:bg-[#FFD700] hover:text-black">
+                    <button data-orientation="horizontal-western" class="orientation-btn flex gap-1 text-[.65rem] items-center justify-center py-2 px-2 hover:bg-[#FFD700] hover:text-black">
                         Horizontal
                     </button>
-                    <button data-orientation="horizontal-japan" class="orientation-btn flex gap-1 text-[.65rem] items-center justify-center py-2 px-4 hover:bg-[#FFD700] hover:text-black">
+                    <button data-orientation="horizontal-japan" class="orientation-btn flex gap-1 text-[.65rem] items-center justify-center py-2 px-2 hover:bg-[#FFD700] hover:text-black">
                         Horizontal (JP)
                     </button>
                 </div>
@@ -47,13 +44,15 @@
         </div>
     </div>
 
-    {{-- <a href="#watermark" class="animate-bounce fixed z-20 p-2 rounded-full right-4 bottom-2 bg-[#FFD700] flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff"><path d="M440-727 256-544l-56-56 280-280 280 280-56 57-184-184v287h-80v-287Zm0 487v-120h80v120h-80Zm0 160v-80h80v80h-80Z"/></svg>
-    </a> --}}
-
     @php
         $prev = $chapter->numbering - 1;
         $next = $chapter->numbering + 1;
+        $newest = $comic->chapters->max('numbering');
+        if (!Auth::user() || !Auth::user()->subscriptions) {
+            $subs = false;
+        }else {
+            $subs = true;
+        }
     @endphp
 
     <div id="bottomControls" class="bot-chapter-opt hidden fixed bottom-0 left-0 right-0 flex p-4 w-full bg-[#151515] items-center justify-center ">
@@ -82,12 +81,29 @@
 
                 <div id="ch-list" class="hidden absolute bottom-full bg-white my-2 flex flex-col rounded overflow-y-auto h-[20vh] w-full">
                     @foreach ($comic->chapters as $ch)
-                        <a href="{{route('series.chapter', ['comic'=>$comic, 'chapter'=>$ch->numbering])}}"
-                            class="ch-list-item {{$ch->numbering == $chapter->numbering ?'active' : ''}}">
-                            {{ __('series.chapter') }} {{$ch->numbering}}
+                        @if ($ch->numbering == $newest)
+                            @if (!Auth::user())    
+                                <a href="{{route('auth.acc_sign_in')}}"
+                                    class="ch-list-item flex items-center justify-between {{$ch->numbering == $chapter->numbering ?'active' : ''}}">
+                                    {{ __('series.chapter') }} {{$ch->numbering}}
+                                    
+                                    <svg class="group-hover:fill-black" xmlns="http://www.w3.org/2000/svg" height="10px" viewBox="0 -960 960 960" width="10px" fill="#fff"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm296.5-223.5Q560-327 560-360t-23.5-56.5Q513-440 480-440t-56.5 23.5Q400-393 400-360t23.5 56.5Q447-280 480-280t56.5-23.5ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80Z"/></svg>
+                                </a>
+                            @else
+                                <a href="{{route('subscriptions.view')}}"
+                                    class="ch-list-item flex items-center justify-between {{$ch->numbering == $chapter->numbering ?'active' : ''}}">
+                                    {{ __('series.chapter') }} {{$ch->numbering}}
+                                    
+                                    <svg class="group-hover:fill-black" xmlns="http://www.w3.org/2000/svg" height="10px" viewBox="0 -960 960 960" width="10px" fill="#fff"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm296.5-223.5Q560-327 560-360t-23.5-56.5Q513-440 480-440t-56.5 23.5Q400-393 400-360t23.5 56.5Q447-280 480-280t56.5-23.5ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80Z"/></svg>
+                                </a>
+                            @endif
+                        @else
+                            <a href="{{route('series.chapter', ['comic'=>$comic, 'chapter'=>$ch->numbering])}}"
+                                class="ch-list-item flex items-center justify-betwee {{$ch->numbering == $chapter->numbering ?'active' : ''}}">
+                                {{ __('series.chapter') }} {{$ch->numbering}}
+                            </a>
+                        @endif
 
-                            <div></div>
-                        </a>
                     @endforeach
                 </div>
             </div>
@@ -97,6 +113,22 @@
                     {{ __('series.next') }}
                     <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="13px" fill="#000000"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
                 </button>
+            @elseif ($next == $newest && !$subs)
+                @if (!Auth::user())
+                    <button
+                        type="button" onclick="window.location.href='{{ route('auth.acc_sign_in') }}'"
+                        class="chapter-control-button md:px-4 px-2">
+                        {{ __('series.next') }}
+                        <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="13px" fill="#000000"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+                    </button>
+                @else
+                    <button
+                        type="button" onclick="window.location.href='{{ route('subscriptions.view') }}'"
+                        class="chapter-control-button md:px-4 px-2">
+                        {{ __('series.next') }}
+                        <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="13px" fill="#000000"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+                    </button>
+                @endif
             @else
                 <button
                     type="button" onclick="window.location.href='{{ route('series.chapter', ['comic'=>$comic, 'chapter'=>$next]) }}'"

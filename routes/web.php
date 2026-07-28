@@ -7,6 +7,7 @@ use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeriesController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->name('home.')->group(function(){
@@ -24,20 +25,23 @@ Route::middleware('auth')->group(function(){
         Route::get('/sign_out', [AuthController::class, 'sign_out'])->name('sign_out');
         Route::get('/', [ProfileController::class, 'view'])->name('index');
     });
-    // Route::post('/comment');
-    // Route::post('/reaction');
+   
+    Route::prefix('subscriptions')->name('subscriptions.')->group(function(){
+        Route::get('/getSubs', [SubscriptionController::class, 'addSub'])->name('getSubs');
+        // Route::post('/getSubs', [SubscriptionController::class, 'addSub'])->name('getSubs');
+        Route::get('/', [SubscriptionController::class, 'view'])->name('view');
+    });
+
+    Route::prefix('creator')->name('creator.')->group(function(){
+        Route::get('/manage', [CreatorController::class, 'manage'])->name('manage');
+        Route::get('/add', [CreatorController::class, 'addView'])->name('addView');
+        Route::get('/', [CreatorController::class, 'view'])->name('view');
+    });
 });
 
 Route::prefix('/browse')->name('browse.')->group(function(){
     Route::post('/{comic:slug}/bookmark', [ProfileController::class, 'addBookmark'])->middleware('auth')->name('bookmark');
     Route::get('/', [BrowseController::class, 'view'])->name('view');
-});
-
-
-Route::prefix('creator')->name('creator.')->group(function(){
-    Route::get('/manage', [CreatorController::class, 'manage'])->name('manage');
-    Route::get('/add', [CreatorController::class, 'addView'])->name('addView');
-    Route::get('/', [CreatorController::class, 'view'])->name('view');
 });
 
 Route::prefix('series')->name('series.')->group(function(){
@@ -59,9 +63,7 @@ Route::prefix('auth')->name('auth.')->group(function(){
 });
 
 
-Route::get('/subscription', function(){
-    return view('subscriptions');
-})->name('subscriptions.view');
+
 
 
 // routes/web.php

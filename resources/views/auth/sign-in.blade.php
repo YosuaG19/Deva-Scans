@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', __('auth.log_in'))
+@section('title', __('auth.sign_in'))
 
 @section('content')
 

@@ -64,6 +64,7 @@ class AuthController extends Controller
     }
 
     public function delete_acc(Request $request){
+        /** @var \App\Models\User $user */    
         $user = Auth::user();
 
         Auth::logout();

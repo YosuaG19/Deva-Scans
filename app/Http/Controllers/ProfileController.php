@@ -22,6 +22,7 @@ class ProfileController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
         $bookmark = $user->bookmarkedComics()->latest()->paginate(12);
+        
         // dd($bookmark);
         $history = Comics::orderBy('rating_avg')->take(5)->get();
         
@@ -90,8 +91,8 @@ class ProfileController extends Controller
     }
 
     public function updateProfile(Request $request){
-    /** @var \App\Models\User $user */    
-    $user = Auth::user();
+        /** @var \App\Models\User $user */    
+        $user = Auth::user();
         $pp_list = [
           'profile-pic-1',
           'profile-pic-2',

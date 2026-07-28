@@ -33,8 +33,11 @@
             </form>
             
         @endauth
+
         @guest
-            <a href="{{route('auth.acc_sign_in')}}">Sign In to Bookmark</a>    
+            <a class="btn-detail" href="{{route('auth.acc_sign_in')}}">
+                {{ __('series.bookmark') }}
+            </a>    
         @endguest
 
         <a href="{{ route('series.chapter', ['comic'=>$comic, 'chapter'=> $fc->numbering])}}" class="btn-detail">
@@ -59,21 +62,70 @@
 
         <div class="flex flex-col gap-1.5 max-h-[300px] md:max-h-[400px] lg:max-h-[500px] overflow-y-auto pr-1">
 
-            @foreach ($comic->chapters as $chapter)
-                <a href="{{ route('series.chapter', ['comic'=>$comic, 'chapter'=>$chapter->numbering]) }}" class="btn-chapter">
-                    <div class="flex gap-2 items-center">
-                        <h3 class="font-semibold text-sm">{{ __('series.chapter') }} {{ sprintf('%02d', $chapter->numbering) }}</h3>
-                        
-                        @if (!empty($chapter->title))
-                            <p class="text-xs font-thin">|</p>
-                            <p class="chapter-title text-xs font-thin">{{$chapter->title}}</p>
-                        @endif
-                    </div>
+            @php
+                $newest = $comic->chapters->max('numbering');
+                if (!Auth::user() || !Auth::user()->subscriptions) {
+                    $subs = false;
+                }else {
+                    $subs = true;
+                }
+            @endphp
 
-                    <p class="text-xs font-thin">
-                        {{ $chapter->created_at->diffForHumans() }}
-                    </p>
-                </a>
+            @foreach ($comic->chapters as $chapter)
+                @if ($chapter->numbering === $newest && !$subs)
+                    @if (!Auth::user())
+                        <a href="{{ route('auth.acc_sign_in') }}" class="btn-chapter group">
+                            <div class="flex gap-2 items-center">
+                                <svg class="group-hover:fill-[#FFD700]" xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#fff"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm296.5-223.5Q560-327 560-360t-23.5-56.5Q513-440 480-440t-56.5 23.5Q400-393 400-360t23.5 56.5Q447-280 480-280t56.5-23.5ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80Z"/></svg>
+
+                                <h3 class="font-semibold text-sm">{{ __('series.chapter') }} {{ sprintf('%02d', $chapter->numbering) }}</h3>
+                                
+                                @if (!empty($chapter->title))
+                                    <p class="text-xs font-thin">|</p>
+                                    <p class="chapter-title text-xs font-thin">{{$chapter->title}}</p>
+                                @endif
+                            </div>
+
+                            <p class="text-xs font-thin">
+                                {{ $chapter->created_at->diffForHumans() }}
+                            </p>
+                        </a>
+                    @else
+                        <a href="{{ route('subscriptions.view') }}" class="btn-chapter group">
+                            <div class="flex gap-2 items-center">
+                                <svg class="group-hover:fill-[#FFD700]" xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#fff"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm296.5-223.5Q560-327 560-360t-23.5-56.5Q513-440 480-440t-56.5 23.5Q400-393 400-360t23.5 56.5Q447-280 480-280t56.5-23.5ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80Z"/></svg>
+
+                                <h3 class="font-semibold text-sm">{{ __('series.chapter') }} {{ sprintf('%02d', $chapter->numbering) }}</h3>
+                                
+                                @if (!empty($chapter->title))
+                                    <p class="text-xs font-thin">|</p>
+                                    <p class="chapter-title text-xs font-thin">{{$chapter->title}}</p>
+                                @endif
+                            </div>
+
+                            <p class="text-xs font-thin">
+                                {{ $chapter->created_at->diffForHumans() }}
+                            </p>
+                        </a>
+                    @endif
+                @else
+                    <a href="{{ route('series.chapter', ['comic'=>$comic, 'chapter'=>$chapter->numbering]) }}" class="btn-chapter">
+                        <div class="flex gap-2 items-center">
+                            <h3 class="font-semibold text-sm">{{ __('series.chapter') }} {{ sprintf('%02d', $chapter->numbering) }}</h3>
+                            
+                            @if (!empty($chapter->title))
+                                <p class="text-xs font-thin">|</p>
+                                <p class="chapter-title text-xs font-thin">{{$chapter->title}}</p>
+                            @endif
+                        </div>
+
+                        <p class="text-xs font-thin">
+                            {{ $chapter->created_at->diffForHumans() }}
+                        </p>
+                    </a>
+                @endif
+
+
             @endforeach
         </div>
 

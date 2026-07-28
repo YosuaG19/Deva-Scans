@@ -12,10 +12,15 @@
             <button class="text-[#FFD700] uppercase font-semibold">{{ __('profile.bookmarks') }}</button>
             {{-- <button class="text-[#FFD700] uppercase font-semibold">{{ __('profile.your_comics') }}</button> --}}
         </div>
-        <div class="series-layout">
-            @foreach ($bookmark as $comic)
-                <x-profile.card :comic="$comic"/>
-            @endforeach
+        <div class="series-layout md:min-w-[40vw]">
+            @if ($bookmark->isEmpty())
+                <p class="text-[#FFFFFF90] text-xs w-full">No Boookmarked Comic yet</p>
+
+            @else
+                @foreach ($bookmark as $comic)
+                    <x-profile.card :comic="$comic"/>
+                @endforeach
+            @endif
         </div>
     </div>
 

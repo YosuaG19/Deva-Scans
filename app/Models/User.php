@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -58,6 +59,10 @@ class User extends Authenticatable
             'user_id',
             'comic_id'
         )->withTimestamps();
+    }
+
+    public function subscriptions():HasOne{
+        return $this->hasOne(Subscriptions::class, 'user_id');
     }
 
     
