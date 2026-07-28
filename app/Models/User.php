@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -22,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'pp_path'
     ];
 
     /**
@@ -46,4 +48,22 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // app/Models/User.php
+
+    public function bookmarkedComics()
+    {
+        return $this->belongsToMany(
+            Comics::class,
+            'bookmarks',
+            'user_id',
+            'comic_id'
+        )->withTimestamps();
+    }
+
+    public function subscriptions():HasOne{
+        return $this->hasOne(Subscriptions::class, 'user_id');
+    }
+
+    
 }

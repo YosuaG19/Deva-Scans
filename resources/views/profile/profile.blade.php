@@ -12,10 +12,15 @@
             <button class="text-[#FFD700] uppercase font-semibold">{{ __('profile.bookmarks') }}</button>
             {{-- <button class="text-[#FFD700] uppercase font-semibold">{{ __('profile.your_comics') }}</button> --}}
         </div>
-        <div class="series-layout">
-            @for ($i = 0; $i < 10; $i++)
-                @include('components.series.card')
-            @endfor
+        <div class="series-layout md:min-w-[40vw]">
+            @if ($bookmark->isEmpty())
+                <p class="text-[#FFFFFF90] text-xs w-full">No Boookmarked Comic yet</p>
+
+            @else
+                @foreach ($bookmark as $comic)
+                    <x-profile.card :comic="$comic"/>
+                @endforeach
+            @endif
         </div>
     </div>
 
@@ -23,9 +28,9 @@
         <h2 class="text-[#FFD700] text-xl font-bold uppercase">{{ __('profile.history') }}</h2>
 
         <div class="series-layout-vert">
-            @for ($i = 0; $i < 5; $i++)
-                @include('components.series.cardVert')
-            @endfor
+            @foreach ($history as $comic)
+                <x-series.cardVert :comic='$comic'/>
+            @endforeach
         </div>
     </div>
 </div>

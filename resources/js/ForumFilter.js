@@ -2,13 +2,31 @@ export default function ForumFilter(){
     const newest = document.getElementById("newest");
     const oldest = document.getElementById("oldest");
     const slider = document.getElementById("slider");
+    const container = document.getElementById("comments-container");
 
-    if (!newest && !oldest && !slider) {
+    if (!newest && !oldest && !slider && !container) {
         // console.error('Swiper element not found');
         return;
     }
 
     let newestActive = true;
+
+    function sortComments(newest = true) {
+        const comments = [...container.querySelectorAll(".comment")];
+
+        comments.sort((a, b) => {
+            const dateA = Number(a.dataset.created);
+            const dateB = Number(b.dataset.created);
+
+            return newest
+                ? dateB - dateA
+                : dateA - dateB;
+        });
+
+        comments.forEach(comment => container.appendChild(comment));
+    }
+
+    sortComments(true);
 
     function updateSwitch() {
         if (newestActive) {
@@ -25,11 +43,13 @@ export default function ForumFilter(){
     newest.addEventListener("click", () => {
         newestActive = true;
         updateSwitch();
+        sortComments(true);
     });
 
     oldest.addEventListener("click", () => {
         newestActive = false;
         updateSwitch();
+        sortComments(false);
     });
 
     updateSwitch();

@@ -4,16 +4,25 @@ namespace App\View\Components\browse;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class banner extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public Collection $sorts;
+    public Collection $types;
+    public Collection $status;
+    public Collection $genres;
+    public LengthAwarePaginator $comics;
+
+    public function __construct(Collection $sorts, Collection $types, Collection $status, Collection $genres, LengthAwarePaginator $comics)
     {
-        //
+        $this->sorts = $sorts;
+        $this->types = $types;
+        $this->status = $status;
+        $this->genres = $genres;
+        $this->comics = $comics;
     }
 
     /**

@@ -1,13 +1,12 @@
+{{-- @dd($user->pp_path) --}}
 <div class="profile-banner bg-cover bg-center" style="background-image: url('{{ asset('images/profile-banner-bg.png') }}')">
-    <div class="min-h-[100px] min-w-[100px] md:min-h-[130px] md:min-w-[130px] rounded-full bg-[#353535] flex items-center justify-center text-white">
-        gambar
-    </div>
+    <img src="{{asset('images/'.$user->pp_path.'.png')}}" class="min-h-[100px] min-w-[100px] md:min-h-[130px] md:min-w-[130px] rounded-full" alt="profile pic"/>
 
     <div class="flex flex-col w-full justify-between gap-4 md:gap-6 box-border">
         <div class="flex w-full justify-between">
             <span class="flex flex-col text-[#FFD700]">
-                <p class="text-xl font-bold profile-name">{{ __('profile.username') }}</p>
-                <p class="text-sm">{{ __('profile.joined', ['date' => 'timestamp']) }}</p>
+                <p class="text-xl font-bold profile-name">{{ $user->name }}</p>
+                <p class="text-sm">{{ __('profile.joined', ['date' => $user->created_at->format('d M, Y')]) }}</p>
             </span>
 
             <div id="lang-switch" 
@@ -26,9 +25,9 @@
                 </button>
             </div>
         </div>
-        <span class="flex gap-4">
+        <form method="get" action="{{route('profile.sign_out')}}" class="flex gap-4">
             <a href="{{route('profile.edit')}}" class="btn-profile">{{ __('profile.edit_profile') }}</a>
-            <button class="btn-profile">{{ __('profile.logout') }}</button>
-        </span>
+            <button type="submit" class="btn-profile">{{ __('profile.logout') }}</button>
+        </form>
     </div>
 </div>

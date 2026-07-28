@@ -4,16 +4,17 @@ namespace App\View\Components\browse;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class filterGenre extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    
+    public Collection $genres;
+    
+    public function __construct(Collection $genres)
     {
-        //
+        $this->genres = $genres;
     }
 
     /**

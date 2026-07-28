@@ -131,7 +131,7 @@
 
 .series-layout{
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(4, 2fr);
     column-gap: 1.5rem;
     row-gap: 1rem;
 }
@@ -162,7 +162,7 @@
 
 .browse-layout{
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 2fr);
     column-gap: 1.5rem;
     row-gap: 1rem;
 }
@@ -212,7 +212,7 @@ body{
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 1rem 6rem;
+    padding: 1rem 8rem;
     box-sizing: border-box;
     width: 100%;
     gap: 2.5rem;
@@ -286,13 +286,16 @@ body{
 }
 
 .btn-detail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: .5rem 0rem;
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 650;
     border-radius: .5rem;
     background: #FFD700;
-    border: 2px solid #FFD70000;
+    border: 2px solid #FFD700;
     transition: 200ms ease;
     cursor: pointer;
     text-transform: uppercase;
@@ -306,7 +309,9 @@ body{
 
 .btn-rating{
     width: 100%;
+    cursor: pointer;
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     color: #FFD700;
@@ -315,6 +320,11 @@ body{
     padding: .375rem;
     gap: .5rem;
     font-weight: 500;
+}
+
+.rating-btn.active{
+    background: #FFD700;
+    color: black;
 }
 
 .btn-chapter{
@@ -330,9 +340,36 @@ body{
     border: 2px solid #FFD70000;
 }
 
+.ch-list-item{
+    width: 100%;
+    position: relative;
+    background: #252525;
+    color: white;
+    padding: .375rem 1rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.ch-list-item:hover{
+    background: #353535;
+}
+
+.ch-list-item.active div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #FFD70060;
+}
+
 .btn-chapter:hover{
     color: #FFD700;
     border: 2px solid #FFD700;
+}
+
+.comment-input.disabled{
+    cursor: not-allowed;
 }
 
 .btn-genre{
@@ -393,13 +430,27 @@ body{
     fill: #FFD700;
 }
 
+.panel.active{
+    display: block;
+}
+
+.panel.hidden{
+    display: none;
+    opacity: 0;
+}
+
+
 @media screen and (max-width: 1024px) {
+    .series-cont{
+        padding: .75rem 1rem;
+    }
+
     .series-layout{
         grid-template-columns: repeat(3, auto);
     }
 
     .browse-layout{
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: repeat(2, 2fr);
     }
 
     .profile-banner, .browse-banner{
@@ -434,7 +485,7 @@ body{
     }
     
     .browse-layout{
-        grid-template-columns: repeat(1, auto);
+        grid-template-columns: repeat(1, 2fr);
         row-gap: 1.5rem;
     }
 

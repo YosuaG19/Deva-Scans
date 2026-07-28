@@ -6,7 +6,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex mx-auto w-[70%] md:w-full aspect-[3/4]">
-                    @include('components.series.cardCover')
+                    {{-- @include('components.series.cardCover') --}}
                 </div>
 
                 <div class="flex w-full flex-col gap-2">

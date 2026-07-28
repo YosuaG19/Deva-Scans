@@ -10,6 +10,16 @@ import AddChapterPanel from './AddChapterPanel.js';
 import ForumFilter from './ForumFilter.js';
 import LikeDislikedComment from './LikeDislikedComment.js';
 import LangSwitch from './LangSwith.js';
+import MobileFilter from './MobileFilter.js';
+import ChapterListPanel from './ChapterListPanel.js';
+import PageOrientation from './PageOrientation.js';
+import PageOrientationPanel from './PageOrientationPanel.js';
+import ProfilePicSelection from './ProfilePicSelection.js';
+import CommentCharCounter from './CommentCharCounter.js';
+import ReactionSelection from './ReactionSelection.js';
+import CommentForm from './CommentForm.js';
+import RatingPanel from './RatingPanel.js';
+import RatingSelection from './RatingSelection.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded");
@@ -49,4 +59,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     LangSwitch();
     console.log('LangSwitch ok')
+
+    MobileFilter();
+    console.log('MobileFilter ok')
+
+    ChapterListPanel();
+    console.log('ChapterListPanel ok')
+
+    PageOrientationPanel();
+    console.log('PageOrientationPanel ok')
+    
+    PageOrientation();
+    console.log('PageOrientation ok');
+    
+    CommentForm();
+    console.log('CommentForm ok');
+    
+    CommentCharCounter();
+    console.log('CommentCharCounter ok');
+
+    ProfilePicSelection();
+    console.log('ProfilePicSelection ok');
+
+    ReactionSelection();
+    console.log('ReactionSelection ok');
+
+    RatingPanel();
+    console.log('RatingPanel ok');
+
+    RatingSelection()
+    console.log('RatingSelection ok');
 });

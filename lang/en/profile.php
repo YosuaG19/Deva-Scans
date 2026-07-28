@@ -40,7 +40,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'profile_picture' => 'Profile Picture',
+    'profile_picture' => 'Select Profile Picture',
     'change_photo' => 'Change Photo',
     'remove_photo' => 'Remove',
     'profile_picture_requirement' => 'Recommended: JPG, JPEG, or PNG. Maximum file size 2 MB.',
@@ -52,7 +52,7 @@ return [
     */
 
     'username_label' => 'Username',
-    'username_requirement' => '3–20 characters. Letters, numbers, and underscores only.',
+    'username_requirement' => '3–20 characters. Only numbers and characters.',
     'email_label' => 'Email',
 
     'username_placeholder' => 'Enter your username',

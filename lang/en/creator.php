@@ -10,7 +10,7 @@ return [
 
     'my_creations' => 'My Creations',
 
-    'add_new_comic' => 'Add New Comic',
+    'add_new_comic' => 'New Comic',
 
     'chapters' => 'Chapters',
 

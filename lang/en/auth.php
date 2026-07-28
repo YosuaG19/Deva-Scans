@@ -14,13 +14,13 @@ return [
 
     // Buttons
     'sign_up' => 'Sign Up',
-    'log_in' => 'Log In',
+    'sign_in' => 'Sign In',
     'send' => 'Send',
 
     // Links
     'forgot_password' => 'Forgot password?',
     'already_have_account' => 'Already have an account?',
-    'login_here' => 'Log In here',
+    'login_here' => 'Sign In here',
 
     'new_user' => 'Are you new?',
     'signup_here' => 'Sign up here!',

@@ -30,6 +30,11 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'pp_path' => fake()->randomElement([
+                'profile-pic-1',
+                'profile-pic-2',
+                'profile-pic-3',
+            ])
         ];
     }
 

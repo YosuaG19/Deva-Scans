@@ -2,7 +2,7 @@
 
 return [
 
-    'details_title' => 'Details | Deva Scans',
+    'details_title' => 'Details | ',
 
     // Card
     'newest_chapter' => 'Newest Chapter',

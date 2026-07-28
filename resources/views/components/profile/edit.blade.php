@@ -8,17 +8,26 @@
     {{-- Profile Picture --}}
     <div class="flex flex-col gap-2 text-[#FFD700]">
         <h3 class="text-sm font-semibold">{{ __('profile.profile_picture') }}</h3>
-        <div class="flex gap-4 items-center">
-            <div class="w-[90px] h-[90px] bg-[#353535] rounded-full"></div>
+        <form method="POST" action="{{route('profile.uptPP')}}" class="flex gap-4 items-center">
+            @csrf
+            {{-- <input type="hidden" name="pp_path" id="pp_path" value="{{ $user->pp_path }}"> --}}
 
-            <div class="flex flex-col gap-2">
-                <span class="flex gap-4">
-                    <button class="btn-profile">{{ __('profile.change_photo') }}</button>
-                    <button class="btn-profile">{{ __('profile.remove_photo') }}</button>
-                </span>
-                <p class="text-xs font-thin">{{ __('profile.profile_picture_requirement') }}</p>
-            </div>
-        </div>
+            @foreach ($pp_list as $pp)
+                <button
+                    type="submit"
+                    name="pp_path"
+                    value="{{ $pp }}"
+                    class="pp_selection cursor-pointer flex items-center justify-center w-[90px] h-[90px] rounded-full border-2
+                    {{ $user->pp_path == $pp ? 'border-[#FFD700]' : 'border-transparent' }}"
+                >
+                    <img
+                        class="w-full h-full rounded-full"
+                        src="{{ asset('images/'.$pp.'.png') }}"
+                        alt=""
+                    >
+                </button>
+            @endforeach
+        </form>
     </div>
 
     {{-- Username & Email --}}
@@ -29,11 +38,11 @@
                 <label class="text-sm font-semibold">{{ __('profile.username_label') }}</label>
                 <p class="text-xs font-thin">{{ __('profile.username_requirement') }}</p>
             </span>
-            <input placeholder="old.values" name="Username" class="input-cont" type="text">
+            <input placeholder="New Username" value="{{old('user_name',$user->name)}}" name="name" class="input-cont" type="text">
         </div>
         <div class="w-full">
             <label class="text-[#FFD700] text-sm font-semibold">{{ __('profile.email_label') }}</label>
-            <input placeholder="old.values" name="Email" class="input-cont" type="text">
+            <input placeholder="New Email" value="{{old('user_email',$user->email)}}" name="email" class="input-cont" type="email">
         </div>
         <button type="submit" class="btn-profile-edit">{{ __('profile.save_profile') }}</button>
     </form>
@@ -46,9 +55,9 @@
         <h3 class="text-[#FFD700] text-sm font-semibold">{{ __('profile.change_password') }}</h3>
         <form class="form-cont text-[#FFD700]" action="{{ route('profile.uptPass') }}" method="POST">
             @csrf
-            <input placeholder="old.values" name="old_pass" class="input-cont" placeholder="Old Password" type="password">
-            <input placeholder="old.values" name="password" class="input-cont" placeholder="New Password" type="password">
-            <input placeholder="old.values" name="password_confirmation" class="input-cont" placeholder="Confirm Password" type="password">
+            <input placeholder="Current Password" name="current_password" class="input-cont" placeholder="Old Password" type="password">
+            <input placeholder="New Password" name="password" class="input-cont" placeholder="New Password" type="password">
+            <input placeholder="Confirm Password" name="password_confirmation" class="input-cont" placeholder="Confirm Password" type="password">
             <button class="btn-profile-edit" type="submit">{{ __('profile.update_password') }}</button>
         </form>
     </div>

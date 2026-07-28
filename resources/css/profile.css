@@ -28,6 +28,11 @@
     cursor: pointer;
 }
 
+.btn-profile-edit:hover{
+    background: #FFD700;
+    color: #000;
+}
+
 @media screen and (max-width: 480px) {
     .profile-name{
         max-width: 150px;

@@ -1,25 +1,31 @@
-export default function LikeDislikedComment(){
-    const likeBtn = document.getElementById("like-btn");
-    const dislikeBtn = document.getElementById("dislike-btn");
+export default function LikeDislikedComment() {
+    const container = document.getElementById("comments-container");
 
-    if (!likeBtn && !dislikeBtn){
-        return
-    }
+    if (!container) return;
 
-    function toggleReaction(button, otherButton) {
-        if (button.classList.contains("active")) {
-            button.classList.remove("active");
-        } else {
-            button.classList.add("active");
-            otherButton.classList.remove("active");
+    const comments = container.querySelectorAll(".comment");
+
+    comments.forEach(comment => {
+        const likeBtn = comment.querySelector(".like-btn");
+        const dislikeBtn = comment.querySelector(".dislike-btn");
+
+        if (!likeBtn || !dislikeBtn) return;
+
+        function toggleReaction(button, otherButton) {
+            if (button.classList.contains("active")) {
+                button.classList.remove("active");
+            } else {
+                button.classList.add("active");
+                otherButton.classList.remove("active");
+            }
         }
-    }
 
-    likeBtn.addEventListener("click", () => {
-        toggleReaction(likeBtn, dislikeBtn);
-    });
+        likeBtn.addEventListener("click", () => {
+            toggleReaction(likeBtn, dislikeBtn);
+        });
 
-    dislikeBtn.addEventListener("click", () => {
-        toggleReaction(dislikeBtn, likeBtn);
+        dislikeBtn.addEventListener("click", () => {
+            toggleReaction(dislikeBtn, likeBtn);
+        });
     });
 }

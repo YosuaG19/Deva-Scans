@@ -13,8 +13,8 @@ export default function ChapterNavbar() {
         controlsVisible = true;
 
         [topControls, bottomControls].forEach(el => {
-            el.classList.remove('opacity-0', 'pointer-events-none');
-            el.classList.add('opacity-100');
+            el.classList.remove('hidden', 'pointer-events-none', 'z-30');
+            el.classList.add('flex', 'z-30');
         });
     }
 
@@ -22,8 +22,8 @@ export default function ChapterNavbar() {
         controlsVisible = false;
 
         [topControls, bottomControls].forEach(el => {
-            el.classList.remove('opacity-100');
-            el.classList.add('opacity-0', 'pointer-events-none');
+            el.classList.remove('flex', 'z-30');
+            el.classList.add('hidden', 'pointer-events-none', 'z-0');
         });
     }
 

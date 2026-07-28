@@ -4,16 +4,17 @@ namespace App\View\Components\browse;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class filterTypes extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    
+    public Collection $types;
+
+    public function __construct(Collection $types)
     {
-        //
+        $this->types = $types;
     }
 
     /**
