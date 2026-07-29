@@ -7,8 +7,20 @@
             {{$comic->title}}
         </h1>
 
-        <p class="mt-2 text-xs leading-5 w-full">
-            {{Str::limit($comic->desc, 300, "... read more")}}
+        <p class="mt-2 text-xs leading-5">
+            <span class="short-text">
+                {{ Str::limit($comic->desc, 300, '...') }}
+            </span>
+
+            <span class="full-text hidden">
+                {{ $comic->desc }}
+            </span>
+
+            @if(strlen($comic->desc) > 300)
+                <button type="button" class="toggle-desc text-[#FFD700] hover:underline">
+                    Read more
+                </button>
+            @endif
         </p>
 
     </div>
@@ -61,7 +73,7 @@
         <div class="bg-gray-200 h-[2px] rounded"></div>
 
         <div class="flex flex-col gap-1.5 max-h-[300px] md:max-h-[400px] lg:max-h-[500px] overflow-y-auto pr-1">
-
+            {{-- @dd($history) --}}
             @php
                 $newest = $comic->chapters->max('numbering');
                 if (!Auth::user() || !Auth::user()->subscriptions) {
@@ -109,7 +121,7 @@
                         </a>
                     @endif
                 @else
-                    <a href="{{ route('series.chapter', ['comic'=>$comic, 'chapter'=>$chapter->numbering]) }}" class="btn-chapter">
+                    <a href="{{ route('series.chapter', ['comic'=>$comic, 'chapter'=>$chapter->numbering]) }}" class="btn-chapter {{($history?->chapter->numbering ?? 0) >= $chapter->numbering? 'active' : ''}}">
                         <div class="flex gap-2 items-center">
                             <h3 class="font-semibold text-sm">{{ __('series.chapter') }} {{ sprintf('%02d', $chapter->numbering) }}</h3>
                             

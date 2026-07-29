@@ -4,7 +4,6 @@
             $path = $comic->cover_path
         @endphp
         <x-series.cardCover :path='$path' />
-        {{-- @include('components.series.cardCover') --}}
     </a>
 
     

@@ -8,5 +8,4 @@
 @include('components.subscription.banner')
 @include('components.subscription.info')
 @include('components.subscription.card')
-{{-- @include('components.subscription-card') --}}
 @include('layout.footer')

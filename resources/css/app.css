@@ -363,6 +363,10 @@ body{
     background: #FFD70060;
 }
 
+.btn-chapter.active{
+    color: #FFD700;
+}
+
 .btn-chapter:hover{
     color: #FFD700;
     border: 2px solid #FFD700;

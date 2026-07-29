@@ -15,8 +15,6 @@
             >
                 {{ $selectedStatus?->name }}
             </span>
-
-            {{-- <span class="selected-status-label py-[.125rem] px-2  bg-[#FFD700] text-black rounded hidden"></span> --}}
         </span>
     </div>
     <div class="filter-popup absolute w-full w-[10vw] bottom-full md:bottom-auto md:top-full left-0 my-2 rounded bg-[#252525] z-50 hidden flex filter-status p-2">

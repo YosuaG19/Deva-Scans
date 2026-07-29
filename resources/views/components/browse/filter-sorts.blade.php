@@ -14,10 +14,6 @@
     </div>
     <div class="filter-popup absolute w-full md:w-[20vw] lg:w-[15vw] bottom-full md:bottom-auto md:top-full left-0 my-2 rounded bg-[#252525] z-50 hidden flex filter-timeline p-2">
         <div class="flex flex-col w-full gap-2 items-center text-black">
-            {{-- <span class="flex w-full text-xs bg-[#252525] rounded overflow-hidden">
-                <button class="sort-button" name="sortOrder" value="asc">{{ __('browse.asc') }}</button>
-                <button class="sort-button active" name="sortOrder" value="desc">{{ __('browse.desc') }}</button>
-            </span> --}}
             <span class="flex w-full text-xs bg-[#252525] rounded overflow-hidden">
                 <label class="sort-button text-center {{ request('direction', 'desc') == 'asc' ? 'active' : '' }}">
                     <input

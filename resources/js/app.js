@@ -20,6 +20,7 @@ import ReactionSelection from './ReactionSelection.js';
 import CommentForm from './CommentForm.js';
 import RatingPanel from './RatingPanel.js';
 import RatingSelection from './RatingSelection.js';
+import ReadMore from './ReadMore.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded");
@@ -62,6 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     MobileFilter();
     console.log('MobileFilter ok')
+
+    ReadMore();
+    console.log('ReadMore ok');
 
     ChapterListPanel();
     console.log('ChapterListPanel ok')

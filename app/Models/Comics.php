@@ -84,7 +84,9 @@ class Comics extends Model
         );
     }
 
-    // app/Models/Comic.php
+    public function readingHistories():HasMany {
+        return $this->hasMany(ReadingHistory::class, 'comic_id');
+    }   
 
 
 }
