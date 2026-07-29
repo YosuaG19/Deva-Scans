@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Comics;
 use App\Models\Genres;
+use App\Models\ReadingHistory;
 use App\Models\Types;
 use App\Models\Status;
 use App\Models\Sorts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BrowseController extends Controller
 {
@@ -21,12 +23,14 @@ class BrowseController extends Controller
             ]);
         }
 
+        
+        // dd($history);
+        
         $genres = Genres::get();
         $types = Types::get();
         $status = Status::get();
         $sorts = Sorts::get();
         $direction = $request->input('direction', 'desc');
-
 
         $query = Comics::query();
         if ($request->filled('search')) {

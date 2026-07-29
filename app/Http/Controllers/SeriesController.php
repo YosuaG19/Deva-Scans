@@ -23,8 +23,6 @@ class SeriesController extends Controller
         $history = null;
         if ($user){
             $history = ReadingHistory::where('user_id', $user->id)->where('comic_id', $comic->id)->first();
-
-            // dd($history);
         }
         
         $ttl_reaction = 0;

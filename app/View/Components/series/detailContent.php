@@ -14,7 +14,7 @@ class detailContent extends Component
     public Comics $comic;
     public Chapters $fc;
     public Chapters $lc;
-    public ?    ReadingHistory $history;
+    public ?ReadingHistory $history;
 
     public function __construct(Comics $comic, Chapters $fc, Chapters $lc, ?ReadingHistory $history)
     {
