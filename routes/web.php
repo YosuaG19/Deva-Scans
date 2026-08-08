@@ -33,8 +33,12 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::prefix('creator')->name('creator.')->group(function(){
-        Route::get('/manage', [CreatorController::class, 'manage'])->name('manage');
+        Route::get('/manage/{comic:slug}', [CreatorController::class, 'manage'])->name('manage');
+        Route::post('/manage/{comic:slug}/addChapter', [CreatorController::class, 'addChapter'])->name('addChapter');
+        Route::post('/manage/{comic:slug}/delComic', [CreatorController::class, 'delComic'])->name('delComic');
+        Route::post('/manage/{comic:slug}/editComic', [CreatorController::class, 'editCreation'])->name('editComic');
         Route::get('/add', [CreatorController::class, 'addView'])->name('addView');
+        Route::post('/add/addComic', [CreatorController::class, 'addComic'])->name('addComic');
         Route::get('/', [CreatorController::class, 'view'])->name('view');
     });
 });
@@ -50,9 +54,9 @@ Route::prefix('series')->name('series.')->group(function(){
     Route::post('/{comic:slug}/reaction', [ProfileController::class, 'addReactionComic'])->middleware('auth')->name('addReactionComic');
     Route::post('/{comic:slug}/comment', [ProfileController::class, 'addCommentComic'])->middleware('auth')->name('addCommentCommic');
     Route::get('/{comic:slug}', [SeriesController::class, 'detail'])->name('detail');
+    Route::get('/{comic:slug}/{chapter}', [SeriesController::class, 'chapter'])->name('chapter');
     Route::post('/{comic:slug}/{chapter}/reaction', [ProfileController::class, 'addReactionChapter'])->middleware('auth')->name('addReactionChapter');
     Route::post('/{comic:slug}/{chapter}/comment', [ProfileController::class, 'addCommentChapter'])->middleware('auth')->name('addCommentChapter');
-    Route::get('/{comic:slug}/{chapter}', [SeriesController::class, 'chapter'])->name('chapter');
 });
 
 Route::prefix('auth')->name('auth.')->group(function(){

@@ -51,15 +51,26 @@
                 {{ __('series.bookmark') }}
             </a>    
         @endguest
+        
+        @if ($fc)
+            <a href="{{ route('series.chapter', ['comic'=>$comic, 'chapter'=> $fc->numbering])}}" class="btn-detail">
+                {{ __('series.first_chapter') }}
+            </a>
+        @else
+            <a href="" class="btn-detail">
+                {{ __('series.first_chapter') }}
+            </a>
+        @endif
 
-        <a href="{{ route('series.chapter', ['comic'=>$comic, 'chapter'=> $fc->numbering])}}" class="btn-detail">
-            {{ __('series.first_chapter') }}
-        </a>
-
-        <a href="{{ route('series.chapter', ['comic'=>$comic, 'chapter'=> $lc->numbering])}}" class="btn-detail">
-            {{ __('series.last_chapter') }}
-        </a>
-
+        @if ($lc)
+            <a href="{{ route('series.chapter', ['comic'=>$comic, 'chapter'=> $lc->numbering])}}" class="btn-detail">
+                {{ __('series.last_chapter') }}
+            </a>
+        @else
+            <a href="" class="btn-detail">
+                {{ __('series.last_chapter') }}
+            </a>
+        @endif
     </div>
 
     {{-- Chapter List --}}

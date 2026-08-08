@@ -1,56 +1,67 @@
 <div class="flex flex-col lg:flex-row w-[95%] gap-4 m-auto mt-[1.5rem]">
-    <div class="w-full  lg:w-[40%] flex flex-col md:flex-row lg:flex-col gap-4 mx-auto">
+    <div class="w-full  lg:w-[50%] flex flex-col md:flex-row lg:flex-col gap-4 mx-auto">
         
         <div class="bg-[#252525] p-4 rounded-lg flex flex-col gap-4">
             <h2 class="text-[#FFD700] text-sm font-semibold uppercase">Comic Details</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex mx-auto w-[70%] md:w-full aspect-[3/4]">
-                    {{-- @include('components.series.cardCover') --}}
+            <form method="POST" action="{{route('creator.editComic', $comic)}}" class="flex flex-col gap-4">
+                @csrf
+                <div class="flex gap-4 w-full">
+                    <div class="flex mx-auto w-[70%] md:w-[full] aspect-[3/4] bg-white">
+                        <x-series.cardCover :path="$comic->cover_path"/>
+                    </div>
+
+                    <div class="flex w-full flex-col gap-2">
+                        <span class="input-label">
+                            <label for="comic-title">Title<small class="text-red-500">*</small></label>
+                            <input name="title" type="text" placeholder="Enter new Title" value="{{ old('title', $comic->title) }}" required/>   
+                        </span>
+
+                        <span class="input-label">
+                            <label for="artist-name">Artist<small class="text-red-500">*</small></label>
+                            <input name="artist" type="text" placeholder="Enter new artist name" value="{{ old('artist', $comic->artist) }}" required/>   
+                        </span>
+
+                        <span class="input-label relative">
+                            <label for="select-genre">Genre<small class="text-red-500">*</small></label>
+                            <div id="select-genre" class="input-trigger relative flex justify-between items-center cursor-pointer">
+                                <span id="selected-genres-text", class="comic-title text-left">
+                                    Select Comic Genre
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m480-360 160-160H320l160 160Zm0 280q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </div>
+                            {{-- @dd($comic->genres()) --}}
+                            <x-creator.select-genre :genres='$genres' :comic="$comic"/>
+                        </span>
+
+                        <span class="input-label relative">
+                            <label for="select-day">Day Updated<small class="text-red-500">*</small></label>
+                            <div id="select-day" class="input-trigger relative flex justify-between items-center cursor-pointer">
+                                <span id="selected-day-text">
+                                    Select Comic Updated Day
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m480-360 160-160H320l160 160Zm0 280q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </div>
+                            <x-creator.select-day :comic="$comic"/>
+                        </span>
+
+                    </div>
                 </div>
+                <span class="input-label">
+                    <label for="comic-description">Description <small class="text-red-500">*</small></label>
+                    <textarea name="description" id="comic-description" rows="5" placeholder="Enter new description" required>{{ $comic->desc }}</textarea>   
+                </span>
 
-                <div class="flex w-full flex-col gap-2">
-                    <span class="input-label">
-                        <label for="comic-title">Title<small class="text-red-500">*</small></label>
-                        <input name="title" type="text" placeholder="Enter comic title" required/>   
-                    </span>
+                <button type="submit" class="h-fit px-8 py-1.5 text-xs border-[2px] border-[#FFD700] text-[#FFD700] rounded hover:bg-[#FFD700] hover:text-black">Update Detail</button>
 
-                    <span class="input-label">
-                        <label for="author-name">Author/Artist<small class="text-red-500">*</small></label>
-                        <input name="author" type="text" placeholder="Enter author or artist name" required/>   
-                    </span>
+            </form>
 
-                    <span class="input-label relative">
-                        <label for="select-genre">Genre<small class="text-red-500">*</small></label>
-                        <button id="select-genre" class="relative flex justify-between items-center cursor-pointer">
-                            <span id="selected-genres-text", class="comic-title text-left">
-                                Select Comic Genre
-                            </span>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m480-360 160-160H320l160 160Zm0 280q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                        </button>
-                        <x-creator.select-genre :genres='$genres'/>
-                    </span>
 
-                    <span class="input-label relative">
-                        <label for="select-language">Language<small class="text-red-500">*</small></label>
-                        <button id="select-language" class="relative flex justify-between items-center cursor-pointer">
-                            <span id="selected-language-text">
-                                Select Comic Language
-                            </span>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="m480-360 160-160H320l160 160Zm0 280q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                        </button>
-                        <x-creator.select-language/>
-                    </span>
-                </div>
-            </div>
 
-            <span class="input-label">
-                <label for="comic-description">Description <small class="text-red-500">*</small></label>
-                <textarea name="description" id="comic-description" cols="30" rows="5" placeholder="Enter comic description" required></textarea>   
-            </span>
         </div>
 
-        <div class="bg-[#252525] p-4 rounded-lg flex h-fit flex-col gap-4">
+        <form method="POST" action="{{route('creator.delComic', $comic)}}" class="bg-[#252525] p-4 rounded-lg flex h-fit flex-col gap-4">
+            @csrf
             <h2 class="text-red-500 text-sm font-semibold uppercase">Danger Zone</h2>
 
             <span class="flex items-center justify-center gap-4 px-8 py-4 border-[1px] border-[#FF0000] bg-[#FF000030] rounded-lg">
@@ -67,16 +78,17 @@
             <button class="border-[1px] border-[#FF0000] text-[#FF0000] px-4 py-2 rounded-lg text-xs cursor-pointer hover:bg-[#FF000030] hover:text-white transition-all">
                 Delete Comic
             </button>
-        </div>
+        </form>
 
     </div>
 
 
-    <div class="w-full lg:w-[60%] flex flex-col overflow-y-auto h-fit p-4 rounded-lg bg-[#252525] gap-4">
+    <form method="POST" action="{{route('creator.addChapter', $comic)}}" class="w-full lg:w-[50%] flex flex-col overflow-y-auto h-fit p-4 rounded-lg bg-[#252525] gap-4">
+        @csrf
         <div class="flex items-end gap-4"">
             <span class="input-label">
                 <label for="comic-title">Chapter Title (Optional)</label>
-                <input name="title" type="text" placeholder="Enter chapter title" required/>   
+                <input name="title" type="text" placeholder="Enter chapter title"/>   
             </span>
 
             <button type="submit" class="h-fit px-8 py-1.5 text-xs border-[2px] border-[#FFD700] text-[#FFD700] rounded hover:bg-[#FFD700] hover:text-black">Submit</button>
@@ -89,8 +101,8 @@
                     <p>or click to upload</p>
                 </div>
 
-                <input type="file" id="file-input" class="hidden" multiple accept="image/*" />
+                <input type="file" id="file-input" class="hidden" name="panels[]" multiple accept="image/*" />
             </label>
         </div>
-    </div>
+    </form>
 </div>

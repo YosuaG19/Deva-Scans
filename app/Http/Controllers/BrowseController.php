@@ -95,7 +95,6 @@ class BrowseController extends Controller
         $comics = $query
         ->paginate(12)
         ->withQueryString();
-        // $comics = Comics::orderBy('Created_at')->paginate(12);
         
         return view('browse', compact(['genres', 'types', 'status', 'sorts', 'comics']));
     }

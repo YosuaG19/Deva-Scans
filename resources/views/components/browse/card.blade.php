@@ -36,8 +36,17 @@
                     : null;
             @endphp
 
+            @php
+                if ($newest - 3 > 0) {
+                    $max = 3;
+                } else if ($newest - 2 > 0) {
+                    $max = 2;
+                } else {
+                    $max = 0;
+                }
+            @endphp
 
-            @for ($i = 0; $i < 3; $i++)
+            @for ($i = 0; $i < $max; $i++)
                 @if ($i === 0 && !$subs)
                     @if (!Auth::user())
                         <a href="{{ route('auth.acc_sign_in')}}" class="flex items-center justify-between text-xs font-thin py-1 px-2 rounded hover:bg-[#252525] text-white">

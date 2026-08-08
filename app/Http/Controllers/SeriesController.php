@@ -14,11 +14,22 @@ class SeriesController extends Controller
         $fc = $comic->chapters->sortBy('numbering')->first();
         $lc = $comic->chapters->sortByDesc('numbering')->first();
 
-        $reaction = $comic->reactions()
+        $reaction = [
+            ['type' => 'upvote', 'total' => 0],
+            ['type' => 'downvote', 'total' => 0],
+            ['type' => 'love', 'total' => 0],
+            ['type' => 'fire', 'total' => 0],
+            ['type' => 'angry', 'total' => 0],
+            ['type' => 'sad', 'total' => 0]
+        ];
+
+        $all_reaction = $comic->reactions()
             ->select('type')
             ->selectRaw('COUNT(*) as total')
             ->groupBy('type')
             ->get();
+
+        // dd($all_reaction);
 
         $history = null;
         if ($user){
@@ -26,11 +37,11 @@ class SeriesController extends Controller
         }
         
         $ttl_reaction = 0;
-        foreach($reaction as $react){
+        foreach($all_reaction as $react){
             $ttl_reaction += $react->total;
         }
 
-        return view('series.series', compact('comic', 'fc', 'lc', 'reaction', 'ttl_reaction', 'history'));
+        return view('series.series', compact('comic', 'fc', 'lc', 'reaction', 'ttl_reaction', 'history', 'all_reaction'));
     }
 
     public function chapter(Comics $comic, int $chapter)
@@ -54,16 +65,26 @@ class SeriesController extends Controller
             );
         }
         
-        $reaction = $chapter->reactions()
+        $reaction = [
+            ['type' => 'upvote', 'total' => 0],
+            ['type' => 'downvote', 'total' => 0],
+            ['type' => 'love', 'total' => 0],
+            ['type' => 'fire', 'total' => 0],
+            ['type' => 'angry', 'total' => 0],
+            ['type' => 'sad', 'total' => 0]
+        ];
+
+        $all_reaction = $comic->reactions()
             ->select('type')
             ->selectRaw('COUNT(*) as total')
             ->groupBy('type')
             ->get();
+
         $ttl_reaction = 0;
-        foreach($reaction as $react){
+        foreach($all_reaction as $react){
             $ttl_reaction += $react->total;
         }
 
-        return view('series.chapter', compact('comic', 'chapter', 'fc', 'lc', 'reaction', 'ttl_reaction'));
+        return view('series.chapter', compact('comic', 'chapter', 'fc', 'lc', 'reaction', 'ttl_reaction', 'all_reaction'));
     }
 }

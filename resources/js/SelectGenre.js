@@ -12,6 +12,19 @@ export default function SelectGenre() {
 
     let selectedGenres = [];
 
+    genreButtons.forEach(btn => {
+        if (btn.classList.contains("active")) {
+            selectedGenres.push(btn.value.trim());
+        }
+    });
+
+    // Update the UI
+    text.textContent = selectedGenres.length
+        ? selectedGenres.join(", ")
+        : "Select Comic Genre";
+
+    hiddenInput.value = JSON.stringify(selectedGenres);
+
     // Open dropdown
     button.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -48,6 +61,7 @@ export default function SelectGenre() {
             }
 
             hiddenInput.value = JSON.stringify(selectedGenres);
+            console.log(hiddenInput);
 
         });
 

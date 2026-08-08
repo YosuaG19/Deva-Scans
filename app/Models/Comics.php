@@ -28,7 +28,9 @@ class Comics extends Model
         'type_id',
         'status_id',
         'rating_avg',
-        'rating_count'
+        'rating_count',
+        'creator_id',
+        'upt_day'
     ];
 
     public function type(): BelongsTo{
@@ -37,6 +39,10 @@ class Comics extends Model
 
     public function status(): BelongsTo{
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    public function creator():BelongsTo{
+        return $this->belongsTo(User::class, 'creator_id');
     }
 
     public function chapters():HasMany{

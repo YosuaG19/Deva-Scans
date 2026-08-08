@@ -19,7 +19,8 @@
         <h2 class="text-sm font-semibold">{{ __('series.reaction_series_title') }}</h2>
         <p class="ttl-reaction text-[.55rem]">{{$ttl_reaction}} {{ __('series.reactions') }}</p>
     </span>
-    <x-series.reaction :reaction="$reaction" :action="route('series.addReactionComic', $comic)" :objects="$comic" />
+    {{-- @dd($all_reaction) --}}
+    <x-series.reaction :reactions="$all_reaction" :reaction="$reaction" :action="route('series.addReactionComic', $comic)" :objects="$comic" />
     <x-series.chat :object="$comic" :action="route('series.addCommentCommic', $comic)" />
 </div>
 

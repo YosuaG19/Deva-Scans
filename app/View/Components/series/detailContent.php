@@ -12,11 +12,11 @@ use Illuminate\View\Component;
 class detailContent extends Component
 {
     public Comics $comic;
-    public Chapters $fc;
-    public Chapters $lc;
+    public Chapters|null $fc;
+    public Chapters|null $lc;
     public ?ReadingHistory $history;
 
-    public function __construct(Comics $comic, Chapters $fc, Chapters $lc, ?ReadingHistory $history)
+    public function __construct(Comics $comic, Chapters|null $fc, Chapters|null $lc, ?ReadingHistory $history)
     {
         $this->comic = $comic;
         $this->fc = $fc;
