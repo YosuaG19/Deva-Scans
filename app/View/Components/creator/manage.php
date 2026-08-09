@@ -2,18 +2,17 @@
 
 namespace App\View\Components\creator;
 
+use App\Models\Comics;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class manage extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public Comics $comic;
+    public function __construct(Comics $comic)
     {
-        //
+        $this->comic = $comic;
     }
 
     /**

@@ -1,13 +1,23 @@
-export default function SelectLanguage() {
+export default function Selectday() {
 
-    const button = document.getElementById("select-language");
-    const dropdown = document.querySelector(".filter-language");
+    const button = document.getElementById("select-day");
+    const dropdown = document.querySelector(".filter-day");
 
     if (!button || !dropdown) return;
 
-    const text = document.getElementById("selected-language-text");
-    const hiddenInput = document.getElementById("selected-language");
+    const text = document.getElementById("selected-day-text");
+    const hiddenInput = document.getElementById("selected-day");
     const options = dropdown.querySelectorAll(".filter-button");
+
+    options.forEach(option => {
+        if (option.classList.contains("active")) {
+            if (text)
+                text.textContent = option.textContent.trim();
+
+            if (hiddenInput)
+                hiddenInput.value = option.value;
+        }
+    })
 
     // Open / Close
     button.addEventListener("click", (e) => {
@@ -15,7 +25,7 @@ export default function SelectLanguage() {
         dropdown.classList.toggle("hidden");
     });
 
-    // Select language
+    // Select day
     options.forEach(option => {
 
         option.addEventListener("click", () => {
@@ -23,17 +33,19 @@ export default function SelectLanguage() {
             options.forEach(btn => btn.classList.remove("active"));
             option.classList.add("active");
 
-            const language = option.value;
+            const day = option.value;
+
 
             if (text)
-                text.textContent = language;
+                text.textContent = option.textContent.trim();
 
             if (hiddenInput)
-                hiddenInput.value = language;
+                hiddenInput.value = day;
 
             dropdown.classList.add("hidden");
-        });
 
+            console.log(hiddenInput);
+        });
     });
 
     // Click outside

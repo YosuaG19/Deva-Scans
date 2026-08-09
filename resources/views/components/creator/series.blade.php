@@ -9,20 +9,48 @@
                 {{ __('creator.add_new_comic') }}
             </a>
 
-            @for ($i = 0; $i < 7; $i++)
-                @include('components.creator.card')
-            @endfor
+            @foreach ($created as $comic)
+                <x-creator.card :comic="$comic"/>
+            @endforeach
+
         </div>
 
         <div class="flex gap-2">
-            @for ($i = 0; $i < 1; $i++)
-                <button class="h-[25px] w-[25px] flex items-center gap-1 justify-center text-xs font-bold uppercase text-black p-1 bg-[#FFD700] rounded">
-                    {{ $i + 1 }}
-                </button>
+            @php
+                $start = max(1, $created->currentPage() - 2);
+                $end = min($created->lastPage(), $created->currentPage() + 2);
+            @endphp
+
+            {{-- Previous --}}
+            @if ($created->onFirstPage())
+                <button class="opacity-50 cursor-not-allowed">←</button>
+            @else
+                <a href="{{ $created->previousPageUrl() }}"
+                class="h-[25px] w-[25px] flex items-center justify-center bg-[#FFD700] rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960" width="12px" fill="#000000"><path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+                </a>
+            @endif
+
+            @for ($page = $start; $page <= $end; $page++)
+                <a
+                    href="{{ $created->url($page) }}"
+                    class="h-[25px] w-[25px] flex items-center gap-1 justify-center text-xs font-bold uppercase p-1 bg-[#FFD700] rounded
+                        {{ $page == $created->currentPage()
+                            ? 'bg-black text-[#FFD700] border-2 border-[#FFD700] '
+                            : 'bg-[#FFD700] text-black' }}">
+                    {{ $page }}
+                </a>
             @endfor
-            <button class="h-[25px] w-[25px] flex items-center gap-1 justify-center text-xs font-bold uppercase text-black p-1 bg-[#FFD700] rounded">
-                <svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960" width="12px" fill="#000000"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
-            </button>
+
+            {{-- Next --}}
+            @if ($created->hasMorePages())
+                <a href="{{ $created->nextPageUrl() }}"
+                class="h-[25px] w-[25px] flex items-center justify-center bg-[#FFD700] rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960" width="12px" fill="#000000"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+                </a>
+            @else
+                <button class="opacity-50 cursor-not-allowed">→</button>
+            @endif
         </div>
     </div>
 </section>

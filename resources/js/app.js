@@ -4,7 +4,6 @@ import DayUpdated from './DayUpdated.js';
 import AddCover from './AddCover.js';
 import BrowseFilter from './BrowseFilter.js';
 import ChapterNavbar from './ChapterNavbar.js';
-import SelectLanguage from './SelectLanguage.js';
 import SelectGenre from './SelectGenre.js';
 import AddChapterPanel from './AddChapterPanel.js';
 import ForumFilter from './ForumFilter.js';
@@ -21,6 +20,7 @@ import CommentForm from './CommentForm.js';
 import RatingPanel from './RatingPanel.js';
 import RatingSelection from './RatingSelection.js';
 import ReadMore from './ReadMore.js';
+import Selectday from './SelectDay.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Loaded");
@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ChapterNavbar();
     console.log("ChapterNavbar OK");
 
-    SelectLanguage();
-    console.log("SelectLanguage OK");
+    Selectday();
+    console.log("Selectday OK");
 
     SelectGenre();
     console.log("SelectGenre OK");

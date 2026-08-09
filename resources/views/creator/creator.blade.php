@@ -5,6 +5,6 @@
 @include('layout.navbar')
 @include('layout.navbarPop')
 
-@include('components.creator.series')
+<x-creator.series :created="$created"/>
 
 @include('layout.footer')

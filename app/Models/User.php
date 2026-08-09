@@ -69,4 +69,8 @@ class User extends Authenticatable
     public function readingHistories():HasMany {
         return $this->hasMany(ReadingHistory::class);
     }
+
+    public function creator():HasMany {
+        return $this->hasMany(Comics::class, 'creator_id');
+    }
 }

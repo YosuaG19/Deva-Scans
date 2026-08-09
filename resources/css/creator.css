@@ -41,7 +41,7 @@
   align-items: start;
 }
 
-.input-label input, .input-label textarea, .input-label select, .input-label button{
+.input-label input, .input-label textarea, .input-label select, .input-trigger{
   font-size: 0.7rem;
   width: 100%;
   padding: 0.5rem;
@@ -75,7 +75,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  padding: .5rem;
+  padding: .25rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,10 +84,15 @@
   cursor: pointer;
 }
 
+.del-panel-btn:hover{
+  background-color: #ff0000;
+}
+
 .num-panel{
   position: absolute;
   width: 25px;
   height: 25px;
+  font-size: 0.75rem;
   top: 0;
   left: 0;
   padding: .5rem;

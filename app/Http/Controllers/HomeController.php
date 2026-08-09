@@ -13,14 +13,7 @@ class HomeController extends Controller
         $comics_rec = Comics::orderBy('rating_avg', 'desc')->take(5)->get();
 
 
-        // $updates = Comics::all()->groupBy(function ($comic) {
-        //     return ($comic->upt_day);
-        // });
-
-        $updates = Comics::all()->groupBy('upt_day');
-
-        // dd($updates->keys());
-        
+        $updates = Comics::all()->groupBy('upt_day');        
 
         return view('home', compact('comics_banner', 'comics_upt', 'comics_rec', 'updates'));
     }

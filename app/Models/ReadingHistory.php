@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ReadingHistory extends Model
 {
@@ -14,18 +15,15 @@ class ReadingHistory extends Model
         'chapter_id',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+    public function user():BelongsTo{
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function comic()
-    {
-        return $this->belongsTo(Comics::class);
+    public function comic():BelongsTo{
+        return $this->belongsTo(Comics::class, 'comic_id');
     }
 
-    public function chapter()
-    {
-        return $this->belongsTo(Chapters::class);
+    public function chapter():BelongsTo{
+        return $this->belongsTo(Chapters::class, 'chapter_id');
     }
 }

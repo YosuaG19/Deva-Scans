@@ -5,14 +5,12 @@ namespace App\View\Components\creator;
 use App\Models\Comics;
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\View\Component;
 
-class selectGenre extends Component
+class card extends Component
 {
-    public Comics|null $comic;
-
-    public function __construct(Comics|null $comic)
+    public Comics $comic;
+    public function __construct(Comics $comic)
     {
         $this->comic = $comic;
     }
@@ -22,6 +20,6 @@ class selectGenre extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.creator.select-genre');
+        return view('components.creator.card');
     }
 }

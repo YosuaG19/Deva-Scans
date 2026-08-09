@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('type_id');
             $table->foreignId('status_id');
+            $table->foreignId('creator_id')->nullable()->constrained('users')->cascadeOnDelete();
             
             $table->string('title')->unique();
             $table->string('slug')->unique();

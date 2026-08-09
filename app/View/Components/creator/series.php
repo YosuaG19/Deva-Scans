@@ -2,17 +2,17 @@
 
 namespace App\View\Components\creator;
 
-use App\Models\Comics;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
-class selectLanguage extends Component
+class series extends Component
 {
-    public Comics|null $comic;
-    public function __construct(Comics|null $comic = null)
+    public LengthAwarePaginator $created;
+    public function __construct(LengthAwarePaginator $created)
     {
-        $this->comic = $comic;
+        $this->created = $created;
     }
 
     /**
@@ -20,6 +20,6 @@ class selectLanguage extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.creator.select-language');
+        return view('components.creator.series');
     }
 }

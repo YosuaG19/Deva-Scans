@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bookmarks;
 use App\Models\Chapters;
 use App\Models\Comics;
-use App\Models\Comments;
 use App\Models\Ratings;
 use App\Models\ReadingHistory;
-use App\Models\User;
-use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
@@ -27,12 +22,6 @@ class ProfileController extends Controller
         // dd($bookmark);
         $history = null;
         if ($user) {
-            // $history = Comics::select('comics.*')
-            //     ->join('readingHistory', 'comics.id', '=', 'readingHistory.comic_id')
-            //     ->where('readingHistory.user_id', $user->id)
-            //     ->orderByDesc('readingHistory.updated_at')
-            //     ->limit(5)
-            //     ->get();
             $history = ReadingHistory::where([
                     'user_id' => $user->id,
                 ])
@@ -44,9 +33,6 @@ class ProfileController extends Controller
         
     public function edit(){
         $user = Auth::user();
-
-        // dd($pp_list);
-
         return view('profile.profile-info', compact('user'));
     }
 

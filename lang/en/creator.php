@@ -14,7 +14,7 @@ return [
 
     'chapters' => 'Chapters',
 
-    'views' => 'Views',
+    'bookmarks' => 'Bookmarks',
 
     'likes' => 'Likes',
 
