@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.master')
 
 @section('title', __('auth.sign_in'))
 
