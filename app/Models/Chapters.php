@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Chapters extends Model
 {
     use HasFactory;
-    protected $table = 'Chapters';
+    protected $table = 'chapters';
 
     protected $fillable = [
         'comic_id',
