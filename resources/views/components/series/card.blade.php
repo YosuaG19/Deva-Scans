@@ -1,5 +1,5 @@
 @php
-    $newest = $comic->chapters()->max('numbering');
+    $newest = $comic->chapters->max('numbering');
 @endphp
 
 {{-- @dd($newest) --}}
