@@ -28,7 +28,7 @@ class Chapters extends Model
     }
 
     public function comments():MorphMany{
-        return $this->morphMany(comments::class, 'commentable');
+        return $this->morphMany(Comments::class, 'commentable');
     }
 
     public function reactions():MorphMany{
