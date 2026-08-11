@@ -1,3 +1,11 @@
+@php
+    $pp_list = [
+          'profile-pic-1',
+          'profile-pic-2',
+          'profile-pic-3'
+        ];
+@endphp
+
 <div class="w-full md:w-[80%] m-auto mt-6 p-6 bg-[#252525] flex flex-col gap-4">
     {{-- Form title --}}
     <span class="text-[#FFD700] text-left">
