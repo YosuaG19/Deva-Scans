@@ -9,3 +9,4 @@
 
 <x-browse.series :comics='$comics'/>
 @include('layout.footer')
+@endsection

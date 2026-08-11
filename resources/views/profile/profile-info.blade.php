@@ -13,3 +13,4 @@
 </div>
 <x-profile.edit :user='$user'/>
 @include('components.profile.deleteForm')
+@endsection

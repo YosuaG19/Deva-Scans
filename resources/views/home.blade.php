@@ -96,3 +96,5 @@
 </script>
 
 @include('layout.footer')
+
+@endsection
