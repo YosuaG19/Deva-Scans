@@ -50,9 +50,6 @@
             <div class="update-content {{ $loop->first ? '' : 'hidden' }}" data-day="{{ $day['value'] }}">
                 <div class="series-layout">
                     @foreach ($updates[$day['value']] ?? [] as $comic)
-                        @if ($lim == $i)
-                            @break;
-                        @endif
                         <x-series.card :comic="$comic"/>
                     @endforeach
                 </div>
